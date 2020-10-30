@@ -1,9 +1,53 @@
 .home{
+  .MuiTableHead-root{
+    tr{
+      height: 29px;
+      border-bottom: 1px solid #d5d5d5;
+      border-top: 1px solid #d5d5d5;
+      background-color: #e9e9e9;
+    }
+  }
  .MuiTableRow-root{
-   cursor: pointer;
    transition: .3s;
    &:hover{
      background-color: rgba(0,0,0, .04);
+   }
+   a{
+     display: flex;
+     align-items: center;
+     span{
+       width: 30px;
+       height: 30px;
+       background-size: contain;
+       background-repeat: no-repeat;
+       background-position: center;
+       margin: 0 5px;
+     }
+   }
+   .MuiTableCell-alignRight{
+     a{
+       justify-content: flex-end;
+     }
+   }
+   .form{
+     color: #fff;
+     width: 22px;
+     height: 22px;
+     border-radius: 2px;
+     text-align: center;
+     line-height: 22px;
+     position: relative;
+     margin: 0 1px;
+     display: inline-block;
+     &.form-W{
+       background-color: #44ac45;
+     }
+     &.form-L{
+       background-color: #eb3f30;
+     }
+     &.form-D{
+       background-color: #ffb22f;
+     }
    }
  }
 }

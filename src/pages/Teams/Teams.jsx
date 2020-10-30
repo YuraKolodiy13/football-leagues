@@ -21,24 +21,24 @@ const Teams = () => {
   return (
     <div className='teams'>
       {teams && teams.map(item => (
-        <div className='teams__item' key={item.idTeam}>
+        <div className='teams__item' key={item.id}>
           <Card>
             <CardActionArea>
               <CardMedia
-                image={item.strTeamJersey}
+                image={item.crestUrl}
                 title="Contemplative Reptile"
               />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="h2">
-                  {item.strTeam}
+                  {item.shortName}
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  {item.strAlternate}
+                  {item.venue}
                 </Typography>
               </CardContent>
             </CardActionArea>
           </Card>
-          <Link to={`/team/${item.strTeam}`}/>
+          <Link to={`/team/${item.id}`}/>
         </div>
       ))}
     </div>

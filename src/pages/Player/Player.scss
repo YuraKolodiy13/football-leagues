@@ -1,0 +1,16 @@
+.player{
+  .player__wrapper{
+    display: flex;
+    justify-content: space-between;
+    .player__photo{
+      width: 40%;
+      img{
+        max-width: 100%;
+        height: auto;
+      }
+    }
+    .player__info{
+      width: 58%;
+    }
+  }
+}
