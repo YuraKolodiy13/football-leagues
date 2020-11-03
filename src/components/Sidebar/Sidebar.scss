@@ -1,0 +1,17 @@
+.sidebar{
+  width: 200px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  li{
+    display: flex;
+    span{
+      width: 20px;
+      height: 20px;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      margin-right: 5px;
+    }
+  }
+}

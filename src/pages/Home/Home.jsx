@@ -22,26 +22,26 @@ const Home = () => {
 
   return (
     <div className='home'>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} className='main-table'>
         <Table aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell>#</TableCell>
-              <TableCell>Team</TableCell>
+              <TableCell className='team-name'>Team</TableCell>
               <TableCell>MP</TableCell>
               <TableCell>W</TableCell>
               <TableCell>D</TableCell>
               <TableCell>L</TableCell>
-              <TableCell>G</TableCell>
+              <TableCell className='team-scores'>G</TableCell>
               <TableCell>Pts</TableCell>
-              <TableCell>Form</TableCell>
+              <TableCell className='team-form'>Form</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {table.map((row, index) => (
               <TableRow key={row.team.id}>
                 <TableCell>{index + 1}</TableCell>
-                <TableCell>
+                <TableCell className='team-name'>
                   <Link to={`/team/${row.team.id}`} >
                     <span style={{backgroundImage: `url(${row.team.crestUrl})`}}/>
                     {row.team.name}
@@ -51,9 +51,9 @@ const Home = () => {
                 <TableCell>{row.won}</TableCell>
                 <TableCell>{row.draw}</TableCell>
                 <TableCell>{row.lost}</TableCell>
-                <TableCell>{row.goalsFor}:{row.goalsAgainst}</TableCell>
+                <TableCell className='team-scores'>{row.goalsFor}:{row.goalsAgainst}</TableCell>
                 <TableCell>{row.points}</TableCell>
-                <TableCell>{row.form.split(',').map(item =>
+                <TableCell className='team-form'>{row.form.split(',').map(item =>
                   <span className={`form form-${item}`}>{item}</span>
                 )}</TableCell>
               </TableRow>

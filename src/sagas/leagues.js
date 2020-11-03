@@ -9,7 +9,7 @@ import {
   getTeamPrevScheduleApi,
   getGameDetailApi,
   getTeamInfoApi,
-  getPlayerApi, getScheduleApi,
+  getPlayerApi, getScheduleApi, getCountriesApi,
 } from "../requests/leagues";
 
 export function* getTeams() {
@@ -96,6 +96,22 @@ export function* getSchedule(action) {
   }
 }
 
+export function* getCountries() {
+  try {
+    const response = yield call(getCountriesApi);
+    const countries = {};
+    response.data.data.map((item) => {
+      if(!Object.keys(countries).includes(item.area.id) && item.area.ensignUrl){
+        countries[item.area.id] = item;
+      }
+      return null;
+    });
+    yield put({type: leaguesActions.GET_COUNTRIES_REQUEST_SUCCESS, data: [response.data.data, Object.values(countries)]});
+  } catch (e) {
+    yield put({ type: leaguesActions.GET_COUNTRIES_REQUEST_FAILED, error: e.response });
+  }
+}
+
 export default all([
   takeEvery(leaguesActions.GET_TEAMS_REQUEST, getTeams),
   takeEvery(leaguesActions.GET_TEAM_REQUEST, getTeam),
@@ -106,4 +122,5 @@ export default all([
   takeEvery(leaguesActions.GET_TEAM_PREV_SCHEDULE_REQUEST, getTeamPrevSchedule),
   takeEvery(leaguesActions.GET_GAME_DETAIL_REQUEST, getGameDetail),
   takeEvery(leaguesActions.GET_SCHEDULE_REQUEST, getSchedule),
+  takeEvery(leaguesActions.GET_COUNTRIES_REQUEST, getCountries),
 ])

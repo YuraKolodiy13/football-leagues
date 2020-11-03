@@ -71,3 +71,11 @@ export const GET_SCHEDULE_REQUEST_FAILED = 'GET_SCHEDULE_REQUEST_FAILED';
 export const getScheduleRequest = defaultActionCreator(GET_SCHEDULE_REQUEST, 'data');
 export const getScheduleRequestSuccess = defaultActionCreator(GET_SCHEDULE_REQUEST_SUCCESS, 'data');
 export const getScheduleRequestFailed = defaultActionCreator(GET_SCHEDULE_REQUEST_FAILED, 'error');
+
+export const GET_COUNTRIES_REQUEST = 'GET_COUNTRIES_REQUEST';
+export const GET_COUNTRIES_REQUEST_SUCCESS = 'GET_COUNTRIES_REQUEST_SUCCESS';
+export const GET_COUNTRIES_REQUEST_FAILED = 'GET_COUNTRIES_REQUEST_FAILED';
+
+export const getCountriesRequest = defaultActionCreator(GET_COUNTRIES_REQUEST, 'data');
+export const getCountriesRequestSuccess = defaultActionCreator(GET_COUNTRIES_REQUEST_SUCCESS, 'data');
+export const getCountriesRequestFailed = defaultActionCreator(GET_COUNTRIES_REQUEST_FAILED, 'error');

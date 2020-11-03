@@ -54,6 +54,12 @@ export const getTeamPrevScheduleApi = (team_id) => {
   )
 };
 
+export const getCountriesApi = () => {
+  return service.get(
+    `${API_URL}fd/competitions?areas=2077`,
+  )
+};
+
 export const getGameDetailApi = (game_id) => {
   return service.get(
     `${API_URL}lookupevent.php?id=${game_id}`,
