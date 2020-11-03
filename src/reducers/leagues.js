@@ -8,7 +8,7 @@ import {
   GET_TEAM_REQUEST,
   GET_PLAYER_REQUEST_SUCCESS,
   GET_PLAYER_REQUEST,
-  GET_SCHEDULE_REQUEST_SUCCESS, GET_COUNTRIES_REQUEST_SUCCESS
+  GET_SCHEDULE_REQUEST_SUCCESS, GET_COUNTRIES_REQUEST_SUCCESS, GET_TODAYS_MATCHES_REQUEST_SUCCESS
 } from "../actions/leagues";
 
 const initialState = {
@@ -21,6 +21,7 @@ const initialState = {
   teamPrevEvents: [],
   popularLeagues: [],
   allLeagues: [],
+  matches: {},
   player: {},
   loading: false,
 };
@@ -94,6 +95,15 @@ export default function reducer(state = initialState, action) {
         ...state,
         allLeagues: action.data[0],
         popularLeagues: action.data[1]
+      };
+
+    case GET_TODAYS_MATCHES_REQUEST_SUCCESS:
+      return {
+        ...state,
+        matches: {
+          ...state.matches,
+          [action.data[1]]: action.data[0]
+        }
       };
 
     default:

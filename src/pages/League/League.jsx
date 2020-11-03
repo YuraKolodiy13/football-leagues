@@ -8,10 +8,10 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import './Home.scss'
+import './League.scss'
 import {Link} from "react-router-dom";
 
-const Home = () => {
+const League = () => {
   const dispatch = useDispatch();
   const table = useSelector(state => state.leagues.table);
   const schedule = useSelector(state => state.leagues.schedule);
@@ -113,4 +113,4 @@ const Home = () => {
   )
 };
 
-export default Home;
+export default League;

@@ -9,8 +9,9 @@ import {
   getTeamPrevScheduleApi,
   getGameDetailApi,
   getTeamInfoApi,
-  getPlayerApi, getScheduleApi, getCountriesApi,
+  getPlayerApi, getScheduleApi, getCountriesApi, getTodaysMatchesApi,
 } from "../requests/leagues";
+import {getFullDate} from "../helpers/utils";
 
 export function* getTeams() {
   try {
@@ -112,6 +113,16 @@ export function* getCountries() {
   }
 }
 
+export function* getTodaysMatches(action) {
+  try {
+    const today = getFullDate(new Date());
+    const response = yield call(getTodaysMatchesApi, {today: today, status: action.data});
+    yield put({type: leaguesActions.GET_TODAYS_MATCHES_REQUEST_SUCCESS, data: [response.data.data, action.data]});
+  } catch (e) {
+    yield put({ type: leaguesActions.GET_TODAYS_MATCHES_REQUEST_FAILED, error: e.response });
+  }
+}
+
 export default all([
   takeEvery(leaguesActions.GET_TEAMS_REQUEST, getTeams),
   takeEvery(leaguesActions.GET_TEAM_REQUEST, getTeam),
@@ -123,4 +134,5 @@ export default all([
   takeEvery(leaguesActions.GET_GAME_DETAIL_REQUEST, getGameDetail),
   takeEvery(leaguesActions.GET_SCHEDULE_REQUEST, getSchedule),
   takeEvery(leaguesActions.GET_COUNTRIES_REQUEST, getCountries),
+  takeEvery(leaguesActions.GET_TODAYS_MATCHES_REQUEST, getTodaysMatches),
 ])

@@ -79,3 +79,11 @@ export const GET_COUNTRIES_REQUEST_FAILED = 'GET_COUNTRIES_REQUEST_FAILED';
 export const getCountriesRequest = defaultActionCreator(GET_COUNTRIES_REQUEST, 'data');
 export const getCountriesRequestSuccess = defaultActionCreator(GET_COUNTRIES_REQUEST_SUCCESS, 'data');
 export const getCountriesRequestFailed = defaultActionCreator(GET_COUNTRIES_REQUEST_FAILED, 'error');
+
+export const GET_TODAYS_MATCHES_REQUEST = 'GET_TODAYS_MATCHES_REQUEST';
+export const GET_TODAYS_MATCHES_REQUEST_SUCCESS = 'GET_TODAYS_MATCHES_REQUEST_SUCCESS';
+export const GET_TODAYS_MATCHES_REQUEST_FAILED = 'GET_TODAYS_MATCHES_REQUEST_FAILED';
+
+export const getTodaysMatchesRequest = defaultActionCreator(GET_TODAYS_MATCHES_REQUEST, 'data');
+export const getTodaysMatchesRequestSuccess = defaultActionCreator(GET_TODAYS_MATCHES_REQUEST_SUCCESS, 'data');
+export const getTodaysMatchesRequestFailed = defaultActionCreator(GET_TODAYS_MATCHES_REQUEST_FAILED, 'error');

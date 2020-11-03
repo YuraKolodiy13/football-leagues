@@ -65,3 +65,9 @@ export const getGameDetailApi = (game_id) => {
     `${API_URL}lookupevent.php?id=${game_id}`,
   )
 };
+
+export const getTodaysMatchesApi = ({today, status}) => {
+  return service.get(
+    `${API_URL}fd/matches?dateFrom=${today}&dateTo=${today}&status=${status}`,
+  )
+};
