@@ -3,15 +3,25 @@
   padding: 0;
   margin: 0;
   list-style: none;
+  .MuiTreeItem-root{
+    background-size: 20px 15px;
+    background-position: left top;
+    padding-left: 30px;
+    background-repeat: no-repeat;
+  }
   li{
-    display: flex;
-    span{
-      width: 20px;
-      height: 20px;
-      background-size: contain;
-      background-position: center;
-      background-repeat: no-repeat;
-      margin-right: 5px;
+    ul{
+      margin: 0;
+      list-style: none;
+      padding-left: 30px;
     }
+    //span{
+    //  width: 20px;
+    //  height: 20px;
+    //  background-size: contain;
+    //  background-position: center;
+    //  background-repeat: no-repeat;
+    //  margin-right: 5px;
+    //}
   }
 }

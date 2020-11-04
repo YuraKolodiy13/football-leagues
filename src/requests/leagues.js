@@ -30,15 +30,15 @@ export const getPlayerApi = (player) => {
   )
 };
 
-export const getTableApi = () => {
+export const getTableApi = (id) => {
   return service.get(
-    `${API_URL}fd/competitions/2021/table`,
+    `${API_URL}fd/competitions/${id}/table`,
   )
 };
 
-export const getScheduleApi = (matchday) => {
+export const getScheduleApi = ({matchday, id}) => {
   return service.get(
-    `${API_URL}fd/competitions/2021/matches?stage=REGULAR_SEASON&matchday=${matchday}`,
+    `${API_URL}fd/competitions/${id}/matches?stage=REGULAR_SEASON&matchday=${matchday}`,
   )
 };
 

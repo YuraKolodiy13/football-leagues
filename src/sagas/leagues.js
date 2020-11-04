@@ -51,11 +51,14 @@ export function* getPlayer(action) {
   }
 }
 
-export function* getTable() {
+export function* getTable(action) {
   try {
-    const response = yield call(getTableApi);
+    const response = yield call(getTableApi, action.data);
     yield put({type: leaguesActions.GET_TABLE_REQUEST_SUCCESS, data: response.data});
-    yield put({type: leaguesActions.GET_SCHEDULE_REQUEST, data: response.data.data[0].playedGames + 1});
+    yield put({type: leaguesActions.GET_SCHEDULE_REQUEST, data: {
+        matchday: response.data.data[0].playedGames + 1,
+        id: action.data
+      }});
   } catch (e) {
     yield put({ type: leaguesActions.GET_TABLE_REQUEST_FAILED, error: e.response });
   }
@@ -102,8 +105,10 @@ export function* getCountries() {
     const response = yield call(getCountriesApi);
     const countries = {};
     response.data.data.map((item) => {
-      if(!Object.keys(countries).includes(item.area.id) && item.area.ensignUrl){
-        countries[item.area.id] = item;
+      if(countries[item.area.id]){
+        countries[item.area.id] = [...countries[item.area.id], item];
+      }else{
+        countries[item.area.id] = [item];
       }
       return null;
     });
@@ -117,7 +122,18 @@ export function* getTodaysMatches(action) {
   try {
     const today = getFullDate(new Date());
     const response = yield call(getTodaysMatchesApi, {today: today, status: action.data});
-    yield put({type: leaguesActions.GET_TODAYS_MATCHES_REQUEST_SUCCESS, data: [response.data.data, action.data]});
+
+    const matches = {};
+    response.data.data.map((item) => {
+      if(matches[item.competition.id]){
+        matches[item.competition.id] = [...matches[item.competition.id], item];
+      }else{
+        matches[item.competition.id] = [item];
+      }
+      return null;
+    });
+
+    yield put({type: leaguesActions.GET_TODAYS_MATCHES_REQUEST_SUCCESS, data: [matches, action.data]});
   } catch (e) {
     yield put({ type: leaguesActions.GET_TODAYS_MATCHES_REQUEST_FAILED, error: e.response });
   }

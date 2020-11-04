@@ -11,14 +11,14 @@ import Paper from '@material-ui/core/Paper';
 import './League.scss'
 import {Link} from "react-router-dom";
 
-const League = () => {
+const League = (props) => {
   const dispatch = useDispatch();
   const table = useSelector(state => state.leagues.table);
   const schedule = useSelector(state => state.leagues.schedule);
 
   useEffect(() => {
-    dispatch(getTableRequest());
-  }, []); // eslint-disable-line
+    dispatch(getTableRequest(props.match.params.id));
+  }, [props.match.params.id]); // eslint-disable-line
 
   return (
     <div className='home'>
