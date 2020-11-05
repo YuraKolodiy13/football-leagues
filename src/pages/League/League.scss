@@ -8,20 +8,7 @@
     }
   }
   .main-table{
-    .MuiTableRow-root{
-      &:nth-child(-n+4){
-        td:first-of-type{
-          background-color: rgb(0, 70, 130);
-          color: #fff;
-        }
-      }
-      &:nth-child(n+18){
-        td:first-of-type{
-          background-color: rgb(189, 0, 0);
-          color: #fff;
-        }
-      }
-    }
+
   }
  .MuiTableRow-root{
    transition: .3s;

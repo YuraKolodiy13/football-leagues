@@ -9,7 +9,7 @@ import {
   getTeamPrevScheduleApi,
   getGameDetailApi,
   getTeamInfoApi,
-  getPlayerApi, getScheduleApi, getCountriesApi, getTodaysMatchesApi,
+  getPlayerApi, getScheduleApi, getCountriesApi, getTodaysMatchesApi, searchUsersApi, getUserRepoApi,
 } from "../requests/leagues";
 import {getFullDate} from "../helpers/utils";
 
@@ -139,6 +139,26 @@ export function* getTodaysMatches(action) {
   }
 }
 
+export function* searchUsers(action) {
+  try {
+    const response = yield call(searchUsersApi, action.data);
+    yield put({type: leaguesActions.SEARCH_USERS_SUCCESS, data: response.data});
+
+    yield put({type: leaguesActions.GET_USER_REPO, data: response.data.login})
+  } catch (e) {
+    yield put({ type: leaguesActions.SEARCH_USERS_FAILED, error: e.response });
+  }
+}
+
+export function* getUserRepo(action) {
+  try {
+    const response = yield call(getUserRepoApi, action.data);
+    yield put({type: leaguesActions.GET_USER_REPO_SUCCESS, data: response.data});
+  } catch (e) {
+    yield put({ type: leaguesActions.GET_USER_REPO_FAILED, error: e.response });
+  }
+}
+
 export default all([
   takeEvery(leaguesActions.GET_TEAMS_REQUEST, getTeams),
   takeEvery(leaguesActions.GET_TEAM_REQUEST, getTeam),
@@ -151,4 +171,6 @@ export default all([
   takeEvery(leaguesActions.GET_SCHEDULE_REQUEST, getSchedule),
   takeEvery(leaguesActions.GET_COUNTRIES_REQUEST, getCountries),
   takeEvery(leaguesActions.GET_TODAYS_MATCHES_REQUEST, getTodaysMatches),
+  takeEvery(leaguesActions.SEARCH_USERS, searchUsers),
+  takeEvery(leaguesActions.GET_USER_REPO, getUserRepo),
 ])

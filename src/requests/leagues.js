@@ -71,3 +71,15 @@ export const getTodaysMatchesApi = ({today, status}) => {
     `${API_URL}fd/matches?dateFrom=${today}&dateTo=${today}&status=${status}`,
   )
 };
+
+export const searchUsersApi = (user) => {
+  return service.get(
+    `https://api.github.com/users/${user}`,
+  )
+};
+
+export const getUserRepoApi = (user) => {
+  return service.get(
+    `https://api.github.com/users/${user}/repos`,
+  )
+};

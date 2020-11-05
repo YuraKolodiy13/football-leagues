@@ -8,12 +8,25 @@
     background-position: left top;
     padding-left: 30px;
     background-repeat: no-repeat;
+    .MuiTreeItem-label{
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
   }
   li{
     ul{
       margin: 0;
       list-style: none;
       padding-left: 30px;
+      a{
+        text-decoration: none;
+        color: inherit;
+        transition: .3s;
+        &:hover{
+          text-decoration: underline;
+        }
+      }
     }
     //span{
     //  width: 20px;

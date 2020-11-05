@@ -7,6 +7,8 @@ import Header from "./components/Header/Header";
 import Player from "./pages/Player/Player";
 import Layout from "./layout/Layout";
 import TodaysMatches from "./pages/TodaysMatches/TodaysMatches";
+import Test from "./pages/Test/Test";
+import RepPage from "./pages/RepPage/RepPage";
 
 const App = () => {
   return (
@@ -19,6 +21,8 @@ const App = () => {
           <Route path="/teams" component={Teams} />
           <Route path="/team/:id" component={Team} />
           <Route path="/player/:id" component={Player} />
+          <Route path="/test" component={Test} />
+          <Route path="/repos" component={RepPage} />
         </Switch>
       </Layout>
 

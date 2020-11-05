@@ -87,3 +87,21 @@ export const GET_TODAYS_MATCHES_REQUEST_FAILED = 'GET_TODAYS_MATCHES_REQUEST_FAI
 export const getTodaysMatchesRequest = defaultActionCreator(GET_TODAYS_MATCHES_REQUEST, 'data');
 export const getTodaysMatchesRequestSuccess = defaultActionCreator(GET_TODAYS_MATCHES_REQUEST_SUCCESS, 'data');
 export const getTodaysMatchesRequestFailed = defaultActionCreator(GET_TODAYS_MATCHES_REQUEST_FAILED, 'error');
+
+
+
+export const SEARCH_USERS = 'SEARCH_USERS';
+export const SEARCH_USERS_SUCCESS = 'SEARCH_USERS_SUCCESS';
+export const SEARCH_USERS_FAILED = 'SEARCH_USERS_FAILED';
+
+export const searchUsers = defaultActionCreator(SEARCH_USERS, 'data');
+export const searchUsersSuccess = defaultActionCreator(SEARCH_USERS_SUCCESS, 'data');
+export const searchUsersFailed = defaultActionCreator(SEARCH_USERS_FAILED, 'error');
+
+export const GET_USER_REPO = 'GET_USER_REPO';
+export const GET_USER_REPO_SUCCESS = 'GET_USER_REPO_SUCCESS';
+export const GET_USER_REPO_FAILED = 'GET_USER_REPO_FAILED';
+
+export const getUserRepo = defaultActionCreator(GET_USER_REPO, 'data');
+export const getUserRepoSuccess = defaultActionCreator(GET_USER_REPO_SUCCESS, 'data');
+export const getUserRepoFailed = defaultActionCreator(GET_USER_REPO_FAILED, 'error');

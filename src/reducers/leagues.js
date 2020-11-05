@@ -8,7 +8,11 @@ import {
   GET_TEAM_REQUEST,
   GET_PLAYER_REQUEST_SUCCESS,
   GET_PLAYER_REQUEST,
-  GET_SCHEDULE_REQUEST_SUCCESS, GET_COUNTRIES_REQUEST_SUCCESS, GET_TODAYS_MATCHES_REQUEST_SUCCESS
+  GET_SCHEDULE_REQUEST_SUCCESS,
+  GET_COUNTRIES_REQUEST_SUCCESS,
+  GET_TODAYS_MATCHES_REQUEST_SUCCESS,
+  SEARCH_USERS_SUCCESS,
+  GET_USER_REPO_SUCCESS
 } from "../actions/leagues";
 
 const initialState = {
@@ -24,6 +28,8 @@ const initialState = {
   matches: {},
   player: {},
   loading: false,
+  user: {},
+  repos: []
 };
 
 export default function reducer(state = initialState, action) {
@@ -104,6 +110,18 @@ export default function reducer(state = initialState, action) {
           ...state.matches,
           [action.data[1]]: action.data[0]
         }
+      };
+
+    case SEARCH_USERS_SUCCESS:
+      return {
+        ...state,
+        user: action.data
+      };
+
+    case GET_USER_REPO_SUCCESS:
+      return {
+        ...state,
+        repos: action.data
       };
 
     default:
