@@ -12,7 +12,7 @@ import {
   GET_COUNTRIES_REQUEST_SUCCESS,
   GET_TODAYS_MATCHES_REQUEST_SUCCESS,
   SEARCH_USERS_SUCCESS,
-  GET_USER_REPO_SUCCESS
+  GET_USER_REPO_SUCCESS, GET_TABLE_REQUEST_FAILED
 } from "../actions/leagues";
 
 const initialState = {
@@ -76,6 +76,11 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         table: action.data.data
+      };
+    case GET_TABLE_REQUEST_FAILED:
+      return {
+        ...state,
+        table: []
       };
 
     case GET_TEAM_NEXT_SCHEDULE_REQUEST_SUCCESS:

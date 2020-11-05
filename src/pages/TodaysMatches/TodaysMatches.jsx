@@ -5,6 +5,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import './TodaysMatches.scss'
 import unknownFlag from '../../assets/images/unknown_flag.svg.png'
+import {Link} from "react-router-dom";
 
 const TabPanel = props => {
   const { children, value, index, ...other } = props;
@@ -28,9 +29,10 @@ const getMatches = (item) => {
       {item && Object.values(item).map(el =>
         <li>
           <p>
-            <span
+            <span className='icon'
               style={{backgroundImage: `url(${el[0].competition.area.ensignUrl ? el[0].competition.area.ensignUrl : unknownFlag})`}}/>
-            {el[0].competition.name}
+            <b>{el[0].competition.area.name}: </b>
+            <Link to={`/league/${el[0].competition.id}`}>{el[0].competition.name}</Link>
           </p>
           <ul>
             {el.map(item =>
