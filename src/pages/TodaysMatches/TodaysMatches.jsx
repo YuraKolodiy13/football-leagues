@@ -37,8 +37,8 @@ const getMatches = (item) => {
           <ul>
             {el.map(item =>
               <li key={item.id}>
-                <span>{item.homeTeam.name}</span>:
-                <span>{item.awayTeam.name}</span>
+                <span>{item.homeTeam.name}</span> {item.score.fullTime.homeTeam}:{item.score.fullTime.awayTeam}
+                <span> {item.awayTeam.name}</span>
               </li>
             )}
           </ul>
