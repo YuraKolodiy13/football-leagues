@@ -125,10 +125,14 @@ export function* getTodaysMatches(action) {
 
     const matches = {};
     response.data.data.map((item) => {
+      const match = {
+        ...item,
+        summary: [...item.goals, ...item.substitutions, ...item.bookings].sort((a, b) => a.minute - b.minute)
+      };
       if(matches[item.competition.id]){
-        matches[item.competition.id] = [...matches[item.competition.id], item];
+        matches[item.competition.id] = [...matches[item.competition.id], match];
       }else{
-        matches[item.competition.id] = [item];
+        matches[item.competition.id] = [match];
       }
       return null;
     });

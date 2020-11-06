@@ -43,4 +43,55 @@
       }
     }
   }
+  .MuiTabs-root{
+    margin-bottom: 10px;
+  }
+  .summary{
+    padding: 0;
+    list-style: none;
+    font-size: 12px;
+    p{
+      font-size: inherit;
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      &.right{
+        flex-direction: row-reverse;
+      }
+      .icon{
+        width: 16px;
+        height: 16px;
+        background-repeat: no-repeat;
+        display: inline-block;
+        background-size: initial;
+        margin: -3px 6px;
+        &.red{
+          background-position: 0 -16px;
+        }
+        &.yellow{
+          background-position: 0 0;
+        }
+        &.scorer{
+          background-position: -16px 0;
+        }
+        &.substitution-in{
+          margin: -3px 3px;
+          width: 13px;
+          background-position: 2px -42px;
+        }
+        &.substitution-out{
+          margin: -3px 3px;
+          width: 13px;
+          background-position: -98px -42px;
+        }
+      }
+    }
+  }
+  .lineups{
+    .lineups__field{
+      width: 100%;
+      height: 290px;
+      background-size: contain;
+    }
+  }
 }

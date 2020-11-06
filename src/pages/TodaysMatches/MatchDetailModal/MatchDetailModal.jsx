@@ -6,7 +6,10 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import './MatchDetailModal.scss'
 import unknownTeam from '../../../assets/images/soccer.png'
-import unknownFlag from "../../../assets/images/unknown_flag.svg.png";
+import unknownFlag from "../../../assets/images/unknown_flag.png";
+import incidentSprite from "../../../assets/images/incident-sprite.svg";
+import livetableSprite from "../../../assets/images/livetable-sprite.svg";
+import field from "../../../assets/images/field.gif";
 import {Link} from "react-router-dom";
 
 const TabPanel = props => {
@@ -31,6 +34,37 @@ const MatchDetailModal = ({open, close, currentMatch}) => {
 
   const closeModal = () => {
     close(false);
+  };
+
+  const summaryItem = (item) => {
+    return(
+      <>
+        <span>{item.minute}'</span>
+        {item.card && (
+          <span
+            className={`icon ${item.card === 'YELLOW_CARD' ? 'yellow' : 'red'}`}
+            style={{backgroundImage: `url(${incidentSprite})`}}
+          />
+        )}
+        {item.player && (
+          <span>{item.player.name}</span>
+        )}
+        {item.playerIn && (
+          <>
+            <span className='icon substitution-in' style={{backgroundImage: `url(${livetableSprite})`}}/>
+            <span>{item.playerIn.name}</span>
+            <span className='icon substitution-out' style={{backgroundImage: `url(${livetableSprite})`}}/>
+            <span>{item.playerOut.name}</span>
+          </>
+        )}
+        {item.scorer && (
+          <>
+            <span className='icon scorer' style={{backgroundImage: `url(${incidentSprite})`}}/>
+            <span>{item.scorer.name}</span>
+          </>
+        )}
+      </>
+    )
   };
 
   return (
@@ -86,10 +120,21 @@ const MatchDetailModal = ({open, close, currentMatch}) => {
               <Tab label='Lineups' />
             </Tabs>
             <TabPanel value={value} index={0}>
-
+              <ul className='summary'>
+                {currentMatch.summary && currentMatch.summary.map(item =>
+                  <li>
+                    {item.team.name === currentMatch.homeTeam.name
+                      ? <p>{summaryItem(item)}</p>
+                      : <p className='right'>{summaryItem(item)}</p>
+                    }
+                  </li>
+                )}
+              </ul>
             </TabPanel>
             <TabPanel value={value} index={1}>
-
+              <div className="lineups" >
+                <div className="lineups__field" style={{backgroundImage: `url(${field})`}}/>
+              </div>
             </TabPanel>
           </div>
         )}

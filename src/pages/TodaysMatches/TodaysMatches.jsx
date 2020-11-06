@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import './TodaysMatches.scss'
-import unknownFlag from '../../assets/images/unknown_flag.svg.png'
+import unknownFlag from '../../assets/images/unknown_flag.png'
 import {Link} from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
 import MatchDetailModal from "./MatchDetailModal/MatchDetailModal";
