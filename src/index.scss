@@ -1,6 +1,7 @@
 body{
   padding-top: 100px;
   font-family: 'Fira Sans', sans-serif;
+  color: #656565;
   .container{
     max-width: 1168px;
     margin: 0 auto;
@@ -23,5 +24,27 @@ body{
     .arrow{
       transform: rotate(-135deg);
     }
+  }
+  .ml-a{
+    margin-left: auto;
+  }
+  .mr-5{
+    margin-right: 5px;
+  }
+}
+
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .modal__content {
+    background-color: #fff;
+    width: 550px;
+    max-height: 80vh;
+    padding: 24px;
+    overflow-y: auto;
+    outline: none;
+    box-sizing: border-box;
   }
 }

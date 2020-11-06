@@ -1,0 +1,46 @@
+.matchDetail{
+  .matchDetail__top-info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    .matchDetail-general{
+      width: 100%;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+    }
+    .matchDetail__team{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 40%;
+      img{
+        width: 50px;
+        height: 50px;
+      }
+      p{
+        font-size: 14px;
+        font-weight: bold;
+      }
+    }
+    .matchDetail__scores{
+      width: 20%;
+      text-align: center;
+      p{
+        font-size: 32px;
+        font-weight: bold;
+      }
+      span{
+        font-size: 11px;
+        text-transform: lowercase;
+      }
+      &.finished{
+        p, span{
+          color: #085f00;
+        }
+      }
+    }
+  }
+}

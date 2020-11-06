@@ -113,7 +113,8 @@ export default function reducer(state = initialState, action) {
         ...state,
         matches: {
           ...state.matches,
-          [action.data[1]]: action.data[0]
+          [action.data[1]]: action.data[0],
+          loading: state.matches.loading ? state.matches.loading + 1 : 1
         }
       };
 

@@ -8,20 +8,44 @@
         background-color: #ffe1af;
         display: flex;
         align-items: center;
-        .icon{
-          display: inline-block;
-          width: 20px;
-          height: 17px;
-          background-size: cover;
-          background-repeat: no-repeat;
-          background-position: center;
-          margin: -2px 5px 0 5px;
+        font-size: 14px;
+        b{
+          margin-right: 5px;
+        }
+        a{
+          text-decoration: none;
+          color: inherit;
+          transition: .3s;
+          &:hover{
+            text-decoration: underline;
+          }
         }
       }
       li{
         border-bottom: 1px solid #e5e5e5;
         text-align: center;
+        cursor: pointer;
+        transition: .3s;
+        position: relative;
+        font-size: 14px;
+        padding: 3px;
+        &:hover{
+          background-color: rgba(0,0,0, .04);
+        }
+        .matchTime{
+          position: absolute;
+          left: 30px;
+        }
       }
     }
   }
+}
+.icon{
+  display: inline-block;
+  width: 20px;
+  height: 17px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: -2px 5px 0 5px;
 }
