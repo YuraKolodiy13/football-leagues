@@ -11,7 +11,6 @@ import {
   getTeamInfoApi,
   getPlayerApi, getScheduleApi, getCountriesApi, getTodaysMatchesApi, searchUsersApi, getUserRepoApi,
 } from "../requests/leagues";
-import {getFullDate} from "../helpers/utils";
 
 export function* getTeams() {
   try {
@@ -120,8 +119,7 @@ export function* getCountries() {
 
 export function* getTodaysMatches(action) {
   try {
-    const today = getFullDate(new Date());
-    const response = yield call(getTodaysMatchesApi, {today: today, status: action.data});
+    const response = yield call(getTodaysMatchesApi, {date: action.data.date, status: action.data.type});
 
     const matches = {};
     response.data.data.map((item) => {
@@ -137,7 +135,7 @@ export function* getTodaysMatches(action) {
       return null;
     });
 
-    yield put({type: leaguesActions.GET_TODAYS_MATCHES_REQUEST_SUCCESS, data: [matches, action.data]});
+    yield put({type: leaguesActions.GET_TODAYS_MATCHES_REQUEST_SUCCESS, data: [matches, action.data.type]});
   } catch (e) {
     yield put({ type: leaguesActions.GET_TODAYS_MATCHES_REQUEST_FAILED, error: e.response });
   }

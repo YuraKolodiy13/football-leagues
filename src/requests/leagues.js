@@ -66,9 +66,9 @@ export const getGameDetailApi = (game_id) => {
   )
 };
 
-export const getTodaysMatchesApi = ({today, status}) => {
+export const getTodaysMatchesApi = ({date, status}) => {
   return service.get(
-    `${API_URL}fd/matches?dateFrom=${today}&dateTo=${today}&status=${status}`,
+    `${API_URL}fd/matches?dateFrom=${date}&dateTo=${date}&status=${status}`,
   )
 };
 

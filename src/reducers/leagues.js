@@ -12,7 +12,7 @@ import {
   GET_COUNTRIES_REQUEST_SUCCESS,
   GET_TODAYS_MATCHES_REQUEST_SUCCESS,
   SEARCH_USERS_SUCCESS,
-  GET_USER_REPO_SUCCESS, GET_TABLE_REQUEST_FAILED
+  GET_USER_REPO_SUCCESS, GET_TABLE_REQUEST_FAILED, GET_TODAYS_MATCHES_REQUEST
 } from "../actions/leagues";
 
 const initialState = {
@@ -106,6 +106,15 @@ export default function reducer(state = initialState, action) {
         ...state,
         allLeagues: action.data[0],
         popularLeagues: action.data[1]
+      };
+
+    case GET_TODAYS_MATCHES_REQUEST:
+      return {
+        ...state,
+        matches: {
+          ...state.matches,
+          loading: action.data.type === 'LIVE' ? 0 : state.matches.loading
+        }
       };
 
     case GET_TODAYS_MATCHES_REQUEST_SUCCESS:

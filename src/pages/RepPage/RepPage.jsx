@@ -1,6 +1,5 @@
-import React, {useState} from 'react';
-import {searchUsers} from "../../actions/leagues";
-import {useDispatch, useSelector} from "react-redux";
+import React from 'react';
+import {useSelector} from "react-redux";
 import './RepPage.scss'
 
 const RepPage = () => {
