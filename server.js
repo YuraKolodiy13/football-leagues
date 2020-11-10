@@ -14,6 +14,7 @@ app.use(cors());
 
 app.use('/proxy', createProxyMiddleware({
   target: REDIRECTION_URL,
+  "secure": false,
   pathRewrite: {
     '^/proxy': ''
   },

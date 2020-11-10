@@ -78,8 +78,11 @@ const TodaysMatches = () => {
                     {('0' + new Date(item.utcDate + '').getHours()).slice(-2)}:
                     {('0' + new Date(item.utcDate + '').getMinutes()).slice(-2)}
                   </span>
-                  <span>{item.homeTeam.name}</span> {item.score.fullTime.homeTeam}:{item.score.fullTime.awayTeam}
-                  <span> {item.awayTeam.name}</span>
+                  <span className={`team ${item.score.winner === 'HOME_TEAM' ? 'winner' : ''}`}>{item.homeTeam.name}</span>
+                  <span className='scores'>
+                    <span>{item.score.fullTime.homeTeam} </span>-<span> {item.score.fullTime.awayTeam}</span>
+                  </span>
+                  <span className={`team team-right ${item.score.winner === 'AWAY_TEAM' ? 'winner' : ''}`}> {item.awayTeam.name}</span>
                 </li>
               )}
             </ul>

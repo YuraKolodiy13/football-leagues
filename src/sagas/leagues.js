@@ -25,7 +25,7 @@ export function* getTeam(action) {
   try {
     const response = yield call(getTeamApi, action.data);
     yield put({type: leaguesActions.GET_TEAM_REQUEST_SUCCESS, data: response.data});
-    yield put({type: leaguesActions.GET_TEAM_INFO_REQUEST, data: response.data.data.shortName});
+    yield put({type: leaguesActions.GET_TEAM_INFO_REQUEST, data: response.data.data.name});
     // yield put({type: leaguesActions.GET_TEAM_PREV_SCHEDULE_REQUEST, data: response.data.teams[0].idTeam});
   } catch (e) {
     yield put({ type: leaguesActions.GET_TEAM_REQUEST_FAILED, error: e.response });
@@ -35,7 +35,12 @@ export function* getTeam(action) {
 export function* getTeamInfo(action) {
   try {
     const response = yield call(getTeamInfoApi, action.data);
-    yield put({type: leaguesActions.GET_TEAM_INFO_REQUEST_SUCCESS, data: response.data});
+    const team = response.data.teams ? response.data.teams[0] : {};
+    yield put({type: leaguesActions.GET_TEAM_INFO_REQUEST_SUCCESS, data: team});
+    if(team.idTeam){
+      yield put({type: leaguesActions.GET_TEAM_NEXT_SCHEDULE_REQUEST, data: team.idTeam});
+      yield put({type: leaguesActions.GET_TEAM_PREV_SCHEDULE_REQUEST, data: team.idTeam});
+    }
   } catch (e) {
     yield put({ type: leaguesActions.GET_TEAM_INFO_REQUEST_FAILED, error: e.response });
   }

@@ -55,7 +55,7 @@ export default function reducer(state = initialState, action) {
     case GET_TEAM_INFO_REQUEST_SUCCESS:
       return {
         ...state,
-        teamInfo: action.data.teams ? action.data.teams[0] : {},
+        teamInfo: action.data,
         loading: false
       };
 

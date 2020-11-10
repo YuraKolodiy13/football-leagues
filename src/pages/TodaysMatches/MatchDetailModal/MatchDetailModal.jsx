@@ -141,16 +141,20 @@ const MatchDetailModal = ({open, close, currentMatch}) => {
                   })}</span>
                 </div>
                 <div className="matchDetail__team">
-                  <img onError={e => e.target.src = unknownTeam} src={`https://crests.football-data.org/${currentMatch.homeTeam.id}.svg`} alt=""/>
-                  <p>{currentMatch.homeTeam.name}</p>
+                  <Link to={`/team/${currentMatch.homeTeam.id}`}>
+                    <img onError={e => e.target.src = unknownTeam} src={`https://crests.football-data.org/${currentMatch.homeTeam.id}.svg`} alt=""/>
+                  </Link>
+                  <Link to={`/team/${currentMatch.homeTeam.id}`}>{currentMatch.homeTeam.name}</Link>
                 </div>
                 <div className={`matchDetail__scores ${currentMatch.status.toLowerCase()}`}>
                   <p>{currentMatch.score.fullTime.homeTeam} - {currentMatch.score.fullTime.awayTeam}</p>
                   <span>{currentMatch.status}</span>
                 </div>
                 <div className="matchDetail__team">
-                  <img onError={e => e.target.src = unknownTeam} src={`https://crests.football-data.org/${currentMatch.awayTeam.id}.svg`} alt=""/>
-                  <p>{currentMatch.awayTeam.name}</p>
+                  <Link to={`/team/${currentMatch.awayTeam.id}`}>
+                    <img onError={e => e.target.src = unknownTeam} src={`https://crests.football-data.org/${currentMatch.awayTeam.id}.svg`} alt=""/>
+                  </Link>
+                  <Link to={`/team/${currentMatch.awayTeam.id}`}>{currentMatch.awayTeam.name}</Link>
                 </div>
               </div>
 

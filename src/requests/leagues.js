@@ -44,13 +44,13 @@ export const getScheduleApi = ({matchday, id}) => {
 
 export const getTeamNextScheduleApi = (team_id) => {
   return service.get(
-    `${API_URL}eventsnext.php?id=${team_id}`,
+    `${API_URL_2}eventsnext.php?id=${team_id}`,
   )
 };
 
 export const getTeamPrevScheduleApi = (team_id) => {
   return service.get(
-    `${API_URL}eventslast.php?id=${team_id}`,
+    `${API_URL_2}eventslast.php?id=${team_id}`,
   )
 };
 
