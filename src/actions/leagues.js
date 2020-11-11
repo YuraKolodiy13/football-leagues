@@ -88,6 +88,14 @@ export const getScorersRequest = defaultActionCreator(GET_SCORERS_REQUEST, 'data
 export const getScorersRequestSuccess = defaultActionCreator(GET_SCORERS_REQUEST_SUCCESS, 'data');
 export const getScorersRequestFailed = defaultActionCreator(GET_SCORERS_REQUEST_FAILED, 'error');
 
+export const GET_HEAD2HEAD_REQUEST = 'GET_HEAD2HEAD_REQUEST';
+export const GET_HEAD2HEAD_REQUEST_SUCCESS = 'GET_HEAD2HEAD_REQUEST_SUCCESS';
+export const GET_HEAD2HEAD_REQUEST_FAILED = 'GET_HEAD2HEAD_REQUEST_FAILED';
+
+export const getHead2HeadRequest = defaultActionCreator(GET_HEAD2HEAD_REQUEST, 'data');
+export const getHead2HeadRequestSuccess = defaultActionCreator(GET_HEAD2HEAD_REQUEST_SUCCESS, 'data');
+export const getHead2HeadRequestFailed = defaultActionCreator(GET_HEAD2HEAD_REQUEST_FAILED, 'error');
+
 
 
 export const SEARCH_USERS = 'SEARCH_USERS';

@@ -25,6 +25,17 @@ class Service {
     }).then(
       (response) => callback ? callback(response.status, response.data) : response
     );
+  };
+
+  getWithToken(path, params, callback) {
+    return this.service.get(path, {
+      headers: {
+        'X-Auth-Token': '31336b5c4c164aefb58d709315a65f81'
+      },
+      params,
+    }).then(
+      (response) => callback ? callback(response.status, response.data) : response
+    );
   }
 
   put(put, payload, callback) {

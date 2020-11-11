@@ -7,9 +7,15 @@ import {
   getTeamsApi,
   getTeamNextScheduleApi,
   getTeamPrevScheduleApi,
-  getGameDetailApi,
   getTeamInfoApi,
-  getPlayerApi, getScheduleApi, getCountriesApi, getTodaysMatchesApi, searchUsersApi, getUserRepoApi, getScorersApi,
+  getPlayerApi,
+  getScheduleApi,
+  getCountriesApi,
+  getTodaysMatchesApi,
+  searchUsersApi,
+  getUserRepoApi,
+  getScorersApi,
+  getHead2HeadApi,
 } from "../requests/leagues";
 
 export function* getTeams() {
@@ -147,6 +153,16 @@ export function* getScorers(action) {
 }
 
 
+export function* getHead2Head(action) {
+  try {
+    const response = yield call(getHead2HeadApi, action.data);
+    yield put({type: leaguesActions.GET_HEAD2HEAD_REQUEST_SUCCESS, data: response.data});
+  } catch (e) {
+    yield put({ type: leaguesActions.GET_HEAD2HEAD_REQUEST_FAILED, error: e.response });
+  }
+}
+
+
 
 
 
@@ -183,6 +199,7 @@ export default all([
   takeEvery(leaguesActions.GET_COUNTRIES_REQUEST, getCountries),
   takeEvery(leaguesActions.GET_TODAYS_MATCHES_REQUEST, getTodaysMatches),
   takeEvery(leaguesActions.GET_SCORERS_REQUEST, getScorers),
+  takeEvery(leaguesActions.GET_HEAD2HEAD_REQUEST, getHead2Head),
 
 
 
