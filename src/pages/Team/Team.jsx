@@ -9,7 +9,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
-import {useHistory} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import TableContainer from "@material-ui/core/TableContainer";
 import Loader from "../../components/Loader/Loader";
 
@@ -30,6 +30,13 @@ const Team = (props) => {
 
   return (
     <div className='team'>
+      <ul className='breadcrumbs'>
+        <li><Link to='/'>home</Link></li>
+        {team.activeCompetitions && (
+          <li><Link to={`/league/${team.activeCompetitions[0].id}`}>{team.activeCompetitions[0].name}</Link></li>
+        )}
+        <li>{team.name}</li>
+      </ul>
       {teamInfo.strTeam && (
         <>
           <div className="banner" style={{backgroundImage: `url(${teamInfo.strTeamBanner})`}}/>

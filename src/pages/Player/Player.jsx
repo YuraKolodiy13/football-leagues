@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getPlayerRequest} from "../../actions/leagues";
 import './Player.scss'
 import Loader from "../../components/Loader/Loader";
+import {Link} from "react-router-dom";
 
 const Player = (props) => {
   const dispatch = useDispatch();
@@ -19,6 +20,15 @@ const Player = (props) => {
 
   return (
     <div className='player'>
+      <ul className='breadcrumbs'>
+        <li><Link to='/'>Home</Link></li>
+        {player.strPlayer && (
+          <>
+            <li>{player.strTeam}</li>
+            <li>{player.strPlayer}</li>
+          </>
+        )}
+      </ul>
       {player.strPlayer
         ? <div className='player__wrapper'>
             <div className="player__photo">

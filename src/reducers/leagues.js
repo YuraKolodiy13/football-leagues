@@ -16,7 +16,7 @@ import {
   GET_TABLE_REQUEST_FAILED,
   GET_TODAYS_MATCHES_REQUEST,
   GET_SCORERS_REQUEST_SUCCESS,
-  GET_SCORERS_REQUEST_FAILED, GET_HEAD2HEAD_REQUEST_SUCCESS
+  GET_SCORERS_REQUEST_FAILED, GET_HEAD2HEAD_REQUEST_SUCCESS, GET_HEAD2HEAD_REQUEST_FAILED
 } from "../actions/leagues";
 
 const initialState = {
@@ -150,6 +150,12 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         head2head: action.data.head2head
+      };
+
+    case GET_HEAD2HEAD_REQUEST_FAILED:
+      return {
+        ...state,
+        head2head: {}
       };
 
 
