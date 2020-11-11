@@ -56,14 +56,6 @@ export const getTeamPrevScheduleRequest = defaultActionCreator(GET_TEAM_PREV_SCH
 export const getTeamPrevScheduleRequestSuccess = defaultActionCreator(GET_TEAM_PREV_SCHEDULE_REQUEST_SUCCESS, 'data');
 export const getTeamPrevScheduleRequestFailed = defaultActionCreator(GET_TEAM_PREV_SCHEDULE_REQUEST_FAILED, 'error');
 
-export const GET_GAME_DETAIL_REQUEST = 'GET_GAME_DETAIL_REQUEST';
-export const GET_GAME_DETAIL_REQUEST_SUCCESS = 'GET_GAME_DETAIL_REQUEST_SUCCESS';
-export const GET_GAME_DETAIL_REQUEST_FAILED = 'GET_GAME_DETAIL_REQUEST_FAILED';
-
-export const getGameDetailRequest = defaultActionCreator(GET_GAME_DETAIL_REQUEST, 'data');
-export const getGameDetailRequestSuccess = defaultActionCreator(GET_GAME_DETAIL_REQUEST_SUCCESS, 'data');
-export const getGameDetailRequestFailed = defaultActionCreator(GET_GAME_DETAIL_REQUEST_FAILED, 'error');
-
 export const GET_SCHEDULE_REQUEST = 'GET_SCHEDULE_REQUEST';
 export const GET_SCHEDULE_REQUEST_SUCCESS = 'GET_SCHEDULE_REQUEST_SUCCESS';
 export const GET_SCHEDULE_REQUEST_FAILED = 'GET_SCHEDULE_REQUEST_FAILED';

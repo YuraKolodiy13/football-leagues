@@ -7,7 +7,7 @@ import './TodaysMatches.scss'
 import unknownFlag from '../../assets/images/unknown_flag.png'
 import {Link} from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
-import MatchDetailModal from "./MatchDetailModal/MatchDetailModal";
+import MatchDetailModal from "../../components/MatchDetailModal/MatchDetailModal";
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import {MuiPickersUtilsProvider, KeyboardDatePicker,} from '@material-ui/pickers';
@@ -60,7 +60,7 @@ const TodaysMatches = () => {
             </p>
             <ul>
               {el.map(item =>
-                <li key={item.id} onClick={() => viewMatch(item)}>
+                <li key={item.id} onClick={() => viewMatch(item)} className='match'>
                   <span className='matchTime'>
                     {('0' + new Date(item.utcDate + '').getHours()).slice(-2)}:
                     {('0' + new Date(item.utcDate + '').getMinutes()).slice(-2)}

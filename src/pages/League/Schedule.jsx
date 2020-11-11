@@ -1,66 +1,48 @@
-import React from 'react';
-import Paper from "@material-ui/core/Paper";
-import Table from "@material-ui/core/Table";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
-import TableBody from "@material-ui/core/TableBody";
-import {Link} from "react-router-dom";
-import TableContainer from "@material-ui/core/TableContainer";
+import React, {useState} from 'react';
 import {useSelector} from "react-redux";
+import MatchDetailModal from "../../components/MatchDetailModal/MatchDetailModal";
 
 const Schedule = () => {
 
   const schedule = useSelector(state => state.leagues.schedule);
+  const [isMatchDetailModalOpen, setIsMatchDetailModalOpen] = useState(false);
+  const [currentMatch, setCurrentMatch] = useState({});
+
+  const viewMatch = (match) => {
+    setCurrentMatch(match);
+    setIsMatchDetailModalOpen(true);
+  };
 
   return (
-    <TableContainer component={Paper}>
-      <Table aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Date</TableCell>
-            <TableCell>Status</TableCell>
-            <TableCell>Owner</TableCell>
-            <TableCell>Score</TableCell>
-            <TableCell>Guest</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {schedule.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell>
-                {new Date(row.utcDate + '').toLocaleDateString('en-US', {
+    <div className='schedule'>
+      <ul>
+        {schedule.map((row) => (
+          <li key={row.id} className='match' onClick={() => viewMatch(row)}>
+              <span className='matchTime'>
+                {new Date(row.utcDate + '').toLocaleDateString('uk', {
+                  month: 'numeric',
                   day: 'numeric',
-                  month: 'long',
-                  year: 'numeric'
+                  hour12 : false,
+                  hour:  "2-digit",
+                  minute: "2-digit",
                 })}
-              </TableCell>
-              <TableCell>{row.status}</TableCell>
-              <TableCell align="right">
-                <Link to={`/team/${row.homeTeam.id}`} >
-                  <span style={{backgroundImage: `url(https://crests.football-data.org/${row.homeTeam.id}.svg)`}}/>
-                  {row.homeTeam.name}
-                </Link>
-              </TableCell>
-              <TableCell>
-                {row.status === 'SCHEDULED'
-                  ? '- : -'
-                  : <>
-                    {row.score.fullTime.homeTeam} : {row.score.fullTime.awayTeam}
-                  </>
-                }
-              </TableCell>
-              <TableCell>
-                <Link to={`/team/${row.awayTeam.id}`} >
-                  {row.awayTeam.name}
-                  <span style={{backgroundImage: `url(https://crests.football-data.org/${row.awayTeam.id}.svg)`}}/>
-                </Link>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+              </span>
+            {/*<span>{row.status}</span>*/}
+            <span className='team'>{row.homeTeam.name}</span>
+            <span className='scores'>
+              <span>{row.score.fullTime.homeTeam} </span>-<span> {row.score.fullTime.awayTeam}</span>
+            </span>
+            <span className='team team-right'>{row.awayTeam.name}</span>
+          </li>
+        ))}
+      </ul>
+
+      <MatchDetailModal
+        open={isMatchDetailModalOpen}
+        close={setIsMatchDetailModalOpen}
+        currentMatch={currentMatch}
+      />
+    </div>
   )
 };
 

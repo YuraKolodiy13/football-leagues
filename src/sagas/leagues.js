@@ -25,7 +25,7 @@ export function* getTeam(action) {
   try {
     const response = yield call(getTeamApi, action.data);
     yield put({type: leaguesActions.GET_TEAM_REQUEST_SUCCESS, data: response.data});
-    yield put({type: leaguesActions.GET_TEAM_INFO_REQUEST, data: response.data.data.name});
+    yield put({type: leaguesActions.GET_TEAM_INFO_REQUEST, data: response.data.data.shortName});
     // yield put({type: leaguesActions.GET_TEAM_PREV_SCHEDULE_REQUEST, data: response.data.teams[0].idTeam});
   } catch (e) {
     yield put({ type: leaguesActions.GET_TEAM_REQUEST_FAILED, error: e.response });
@@ -83,15 +83,6 @@ export function* getTeamPrevSchedule(action) {
     yield put({type: leaguesActions.GET_TEAM_PREV_SCHEDULE_REQUEST_SUCCESS, data: response.data});
   } catch (e) {
     yield put({ type: leaguesActions.GET_TEAM_PREV_SCHEDULE_REQUEST_FAILED, error: e.response });
-  }
-}
-
-export function* getGameDetail(action) {
-  try {
-    const response = yield call(getGameDetailApi, action.data);
-    yield put({type: leaguesActions.GET_GAME_DETAIL_REQUEST_SUCCESS, data: response.data});
-  } catch (e) {
-    yield put({ type: leaguesActions.GET_GAME_DETAIL_REQUEST_FAILED, error: e.response });
   }
 }
 
@@ -188,7 +179,6 @@ export default all([
   takeEvery(leaguesActions.GET_TABLE_REQUEST, getTable),
   takeEvery(leaguesActions.GET_TEAM_NEXT_SCHEDULE_REQUEST, getTeamNextSchedule),
   takeEvery(leaguesActions.GET_TEAM_PREV_SCHEDULE_REQUEST, getTeamPrevSchedule),
-  takeEvery(leaguesActions.GET_GAME_DETAIL_REQUEST, getGameDetail),
   takeEvery(leaguesActions.GET_SCHEDULE_REQUEST, getSchedule),
   takeEvery(leaguesActions.GET_COUNTRIES_REQUEST, getCountries),
   takeEvery(leaguesActions.GET_TODAYS_MATCHES_REQUEST, getTodaysMatches),

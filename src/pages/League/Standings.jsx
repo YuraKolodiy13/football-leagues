@@ -41,8 +41,8 @@ const Standings = ({table}) => {
               <TableCell>{row.lost}</TableCell>
               <TableCell className='team-scores'>{row.goalsFor}:{row.goalsAgainst}</TableCell>
               <TableCell>{row.points}</TableCell>
-              <TableCell className='team-form'>{row.form && row.form.split(',').map(item =>
-                <span className={`form form-${item}`}>{item}</span>
+              <TableCell className='team-form'>{row.form && row.form.split(',').map((item, index) =>
+                <span className={`form form-${item}`} key={index}>{item}</span>
               )}</TableCell>
             </TableRow>
           ))}

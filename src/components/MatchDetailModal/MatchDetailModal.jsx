@@ -5,15 +5,15 @@ import Modal from "@material-ui/core/Modal";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import './MatchDetailModal.scss'
-import unknownTeam from '../../../assets/images/soccer.png'
-import unknownFlag from "../../../assets/images/unknown_flag.png";
-import incidentSprite from "../../../assets/images/incident-sprite.svg";
-import livetableSprite from "../../../assets/images/livetable-sprite.svg";
-import homeTeamShirt from "../../../assets/images/dress-white.gif";
-import awayTeamShirt from "../../../assets/images/dress-blue.gif";
-import field from "../../../assets/images/field.gif";
+import unknownTeam from '../../assets/images/soccer.png'
+import unknownFlag from "../../assets/images/unknown_flag.png";
+import incidentSprite from "../../assets/images/incident-sprite.svg";
+import livetableSprite from "../../assets/images/livetable-sprite.svg";
+import homeTeamShirt from "../../assets/images/dress-white.gif";
+import awayTeamShirt from "../../assets/images/dress-blue.gif";
+import field from "../../assets/images/field.gif";
 import {Link} from "react-router-dom";
-import TabPanel from "../../../components/TabPanel/TabPanel";
+import TabPanel from "../../components/TabPanel/TabPanel";
 const positions = ['Goalkeeper', 'Defender', 'Midfielder', 'Attacker'];
 
 const MatchDetailModal = ({open, close, currentMatch}) => {
@@ -140,7 +140,7 @@ const MatchDetailModal = ({open, close, currentMatch}) => {
                 </div>
               </div>
 
-              {currentMatch.summary.length
+              {currentMatch.summary && currentMatch.summary.length
                 ? <>
                   <Tabs
                     value={value}

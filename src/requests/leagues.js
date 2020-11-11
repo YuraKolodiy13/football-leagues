@@ -1,4 +1,5 @@
 import service from './service';
+import axios from 'axios';
 
 const API_URL = process.env.NODE_ENV === 'development' ? 'http://localhost:8080/proxy/' : '/proxy/';
 
@@ -61,12 +62,6 @@ export const getCountriesApi = () => {
   )
 };
 
-export const getGameDetailApi = (game_id) => {
-  return service.get(
-    `${API_URL}lookupevent.php?id=${game_id}`,
-  )
-};
-
 export const getTodaysMatchesApi = ({date, status}) => {
   return service.get(
     `${API_URL}fd/matches?dateFrom=${date}&dateTo=${date}&status=${status}`,
@@ -74,8 +69,12 @@ export const getTodaysMatchesApi = ({date, status}) => {
 };
 
 export const getScorersApi = (league_id) => {
-  return service.get(
-    `${API_URL_3}competitions/${league_id}/scorers`,
+  return axios.get(
+    `${API_URL_3}competitions/${league_id}/scorers`, {
+      headers: {
+        'X-Auth-Token': '31336b5c4c164aefb58d709315a65f81'
+      },
+    }
   )
 };
 

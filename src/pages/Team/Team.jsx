@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {getGameDetailRequest, getTeamRequest} from "../../actions/leagues";
+import {getTeamRequest} from "../../actions/leagues";
 
 import './Team.scss'
 import Paper from "@material-ui/core/Paper";
@@ -81,7 +81,7 @@ const Team = (props) => {
 
       <h2>prev games</h2>
       {teamPrevEvents && teamPrevEvents.map(item =>
-        <div key={item.idEvent} onClick={() => dispatch(getGameDetailRequest(item.idEvent))}>
+        <div key={item.idEvent}>
           {item.strHomeTeam}
           {item.intHomeScore}:{item.intAwayScore}
           {item.strAwayTeam}
