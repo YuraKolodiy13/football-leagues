@@ -3,6 +3,7 @@ import service from './service';
 const API_URL = process.env.NODE_ENV === 'development' ? 'http://localhost:8080/proxy/' : '/proxy/';
 
 const API_URL_2 = 'https://www.thesportsdb.com/api/v1/json/1/';
+const API_URL_3 = 'http://api.football-data.org/v2/';
 // const API_URL = 'http://api.football-data.org/v2/';
 
 
@@ -69,6 +70,12 @@ export const getGameDetailApi = (game_id) => {
 export const getTodaysMatchesApi = ({date, status}) => {
   return service.get(
     `${API_URL}fd/matches?dateFrom=${date}&dateTo=${date}&status=${status}`,
+  )
+};
+
+export const getScorersApi = (league_id) => {
+  return service.get(
+    `${API_URL_3}competitions/${league_id}/scorers`,
   )
 };
 

@@ -88,6 +88,14 @@ export const getTodaysMatchesRequest = defaultActionCreator(GET_TODAYS_MATCHES_R
 export const getTodaysMatchesRequestSuccess = defaultActionCreator(GET_TODAYS_MATCHES_REQUEST_SUCCESS, 'data');
 export const getTodaysMatchesRequestFailed = defaultActionCreator(GET_TODAYS_MATCHES_REQUEST_FAILED, 'error');
 
+export const GET_SCORERS_REQUEST = 'GET_SCORERS_REQUEST';
+export const GET_SCORERS_REQUEST_SUCCESS = 'GET_SCORERS_REQUEST_SUCCESS';
+export const GET_SCORERS_REQUEST_FAILED = 'GET_SCORERS_REQUEST_FAILED';
+
+export const getScorersRequest = defaultActionCreator(GET_SCORERS_REQUEST, 'data');
+export const getScorersRequestSuccess = defaultActionCreator(GET_SCORERS_REQUEST_SUCCESS, 'data');
+export const getScorersRequestFailed = defaultActionCreator(GET_SCORERS_REQUEST_FAILED, 'error');
+
 
 
 export const SEARCH_USERS = 'SEARCH_USERS';

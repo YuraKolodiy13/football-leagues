@@ -13,26 +13,8 @@ import homeTeamShirt from "../../../assets/images/dress-white.gif";
 import awayTeamShirt from "../../../assets/images/dress-blue.gif";
 import field from "../../../assets/images/field.gif";
 import {Link} from "react-router-dom";
-
-
+import TabPanel from "../../../components/TabPanel/TabPanel";
 const positions = ['Goalkeeper', 'Defender', 'Midfielder', 'Attacker'];
-
-
-const TabPanel = props => {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && children}
-    </div>
-  );
-};
 
 const MatchDetailModal = ({open, close, currentMatch}) => {
 
@@ -89,10 +71,10 @@ const MatchDetailModal = ({open, close, currentMatch}) => {
   const getLineupOnField = (value, isHome) => {
     return(
       <>
-        {positions.map(item =>
-          <ul className={`lineups__${item.toLowerCase()}`}>
+        {positions.map((item, index) =>
+          <ul className={`lineups__${item.toLowerCase()}`} key={index}>
             {value && value.map(el => el.position === item &&
-              <li>
+              <li key={el.shirtNumber}>
                 <span className='number'
                   style={{backgroundImage: `url(${isHome ? homeTeamShirt : awayTeamShirt})`}}
                 >
@@ -170,8 +152,8 @@ const MatchDetailModal = ({open, close, currentMatch}) => {
                   </Tabs>
                   <TabPanel value={value} index={0}>
                     <ul className='summary'>
-                      {currentMatch.summary && currentMatch.summary.map(item =>
-                        <li>
+                      {currentMatch.summary && currentMatch.summary.map((item, index) =>
+                        <li key={index}>
                           {item.team.name === currentMatch.homeTeam.name
                             ? <p className={`${item.type === 'OWN' ? 'right' : ''}`}>{summaryItem(item)}</p>
                             : <p className={`right ${item.type === 'OWN' ? 'left' : ''}`}>{summaryItem(item)}</p>

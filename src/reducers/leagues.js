@@ -12,7 +12,11 @@ import {
   GET_COUNTRIES_REQUEST_SUCCESS,
   GET_TODAYS_MATCHES_REQUEST_SUCCESS,
   SEARCH_USERS_SUCCESS,
-  GET_USER_REPO_SUCCESS, GET_TABLE_REQUEST_FAILED, GET_TODAYS_MATCHES_REQUEST
+  GET_USER_REPO_SUCCESS,
+  GET_TABLE_REQUEST_FAILED,
+  GET_TODAYS_MATCHES_REQUEST,
+  GET_SCORERS_REQUEST_SUCCESS,
+  GET_SCORERS_REQUEST_FAILED
 } from "../actions/leagues";
 
 const initialState = {
@@ -25,6 +29,7 @@ const initialState = {
   teamPrevEvents: [],
   popularLeagues: [],
   allLeagues: [],
+  scorers: [],
   matches: {},
   player: {},
   loading: false,
@@ -126,6 +131,23 @@ export default function reducer(state = initialState, action) {
           loading: state.matches.loading ? state.matches.loading + 1 : 1
         }
       };
+
+    case GET_SCORERS_REQUEST_SUCCESS:
+      return {
+        ...state,
+        scorers: action.data.scorers
+      };
+
+
+    case GET_SCORERS_REQUEST_FAILED:
+      return {
+        ...state,
+        scorers: []
+      };
+
+
+
+
 
     case SEARCH_USERS_SUCCESS:
       return {

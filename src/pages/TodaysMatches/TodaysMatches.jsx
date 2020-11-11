@@ -12,22 +12,7 @@ import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import {MuiPickersUtilsProvider, KeyboardDatePicker,} from '@material-ui/pickers';
 import {getFullDate} from "../../helpers/utils";
-
-const TabPanel = props => {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && children}
-    </div>
-  );
-};
+import TabPanel from "../../components/TabPanel/TabPanel";
 
 const TodaysMatches = () => {
 
@@ -56,10 +41,12 @@ const TodaysMatches = () => {
     dispatch(getTodaysMatchesRequest({type: 'FINISHED', date}));
   };
 
+  const getWinnerClass = (item, type) => {
+    if(item.score.winner === type && item.status === 'FINISHED') return 'winner';
+  };
+
   const getMatches = (item, type) => {
-    // console.log(item, 'item')
-    // console.log(Object.values(item), 'Object.values(item).length')
-    if(!item || !Object.values(item).length) return <p>no {type} matches now</p>
+    if(!item || !Object.values(item).length) return <p>no {type} matches now</p>;
     return(
       <>
         {item && Object.values(item).map((el, index) =>
@@ -78,11 +65,11 @@ const TodaysMatches = () => {
                     {('0' + new Date(item.utcDate + '').getHours()).slice(-2)}:
                     {('0' + new Date(item.utcDate + '').getMinutes()).slice(-2)}
                   </span>
-                  <span className={`team ${item.score.winner === 'HOME_TEAM' ? 'winner' : ''}`}>{item.homeTeam.name}</span>
+                  <span className={`team ${getWinnerClass(item, 'HOME_TEAM')}`}>{item.homeTeam.name}</span>
                   <span className='scores'>
                     <span>{item.score.fullTime.homeTeam} </span>-<span> {item.score.fullTime.awayTeam}</span>
                   </span>
-                  <span className={`team team-right ${item.score.winner === 'AWAY_TEAM' ? 'winner' : ''}`}> {item.awayTeam.name}</span>
+                  <span className={`team team-right ${getWinnerClass(item, 'AWAY_TEAM')}`}> {item.awayTeam.name}</span>
                 </li>
               )}
             </ul>
