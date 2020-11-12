@@ -9,6 +9,7 @@ import Layout from "./layout/Layout";
 import TodaysMatches from "./pages/TodaysMatches/TodaysMatches";
 import Test from "./pages/Test/Test";
 import RepPage from "./pages/RepPage/RepPage";
+import World from "./pages/World/World";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
           <Route path="/player/:id" component={Player} />
           <Route path="/test" component={Test} />
           <Route path="/repos" component={RepPage} />
+          <Route path="/world" component={World} />
         </Switch>
       </Layout>
 

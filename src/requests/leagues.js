@@ -90,3 +90,9 @@ export const getUserRepoApi = (user) => {
     `https://api.github.com/users/${user}/repos`,
   )
 };
+
+export const getCountriesBordersApi = () => {
+  return service.get(
+    `https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson`,
+  )
+};

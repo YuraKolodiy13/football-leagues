@@ -19,8 +19,12 @@ const Sidebar = () => {
     return taskTree && taskTree.map((item, index) => {
       return (
         <Fragment key={index}>
-          <TreeItem nodeId={index.toString()} label={item[0].area.name} style={{backgroundImage: `url(${item[0].area.ensignUrl})`}}>
-            {treeTable(item)}
+          <TreeItem
+            nodeId={index.toString()}
+            label={item.length < 2 ? <Link to={`/league/${item[0].id}`}>{item[0].area.name}</Link> : item[0].area.name}
+            style={{backgroundImage: `url(${item[0].area.ensignUrl})`}}
+          >
+            {item.length > 1 && treeTable(item)}
           </TreeItem>
         </Fragment>
       )

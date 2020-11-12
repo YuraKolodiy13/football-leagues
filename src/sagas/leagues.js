@@ -15,8 +15,12 @@ import {
   searchUsersApi,
   getUserRepoApi,
   getScorersApi,
-  getHead2HeadApi,
+  getHead2HeadApi, getCountriesBordersApi,
 } from "../requests/leagues";
+
+const leagues_ids = [2020, 2009, 2035, 2040, 2047, 2049, 2050, 2016, 2021, 2057, 2146, 2018, 2001, 2007, 2031, 2015, 2002,
+  2004, 2131, 2128, 2127, 2125, 2019, 2121, 2116, 2115, 2114, 2003, 2107, 2105, 2100, 2017, 2095, 2094, 2137, 2084, 2014, 2077,
+  2073, 2071, 2070, 2064, 2060];
 
 export function* getTeams() {
   try {
@@ -106,6 +110,7 @@ export function* getCountries() {
     const response = yield call(getCountriesApi);
     const countries = {};
     response.data.data.map((item) => {
+      if(!leagues_ids.includes(item.id)) return null;
       if(countries[item.area.id]){
         countries[item.area.id] = [...countries[item.area.id], item];
       }else{
@@ -164,6 +169,17 @@ export function* getHead2Head(action) {
 
 
 
+export function* getCountriesBorders(action) {
+  try {
+    const response = yield call(getCountriesBordersApi, action.data);
+    yield put({type: leaguesActions.GET_COUNTRIES_BORDERS_REQUEST_SUCCESS, data: response.data});
+  } catch (e) {
+    yield put({ type: leaguesActions.GET_COUNTRIES_BORDERS_REQUEST_FAILED, error: e.response });
+  }
+}
+
+
+
 
 
 
@@ -204,6 +220,7 @@ export default all([
 
 
 
+  takeEvery(leaguesActions.GET_COUNTRIES_BORDERS_REQUEST, getCountriesBorders),
   takeEvery(leaguesActions.SEARCH_USERS, searchUsers),
   takeEvery(leaguesActions.GET_USER_REPO, getUserRepo),
 ])

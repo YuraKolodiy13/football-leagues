@@ -96,6 +96,14 @@ export const getHead2HeadRequest = defaultActionCreator(GET_HEAD2HEAD_REQUEST, '
 export const getHead2HeadRequestSuccess = defaultActionCreator(GET_HEAD2HEAD_REQUEST_SUCCESS, 'data');
 export const getHead2HeadRequestFailed = defaultActionCreator(GET_HEAD2HEAD_REQUEST_FAILED, 'error');
 
+export const GET_COUNTRIES_BORDERS_REQUEST = 'GET_COUNTRIES_BORDERS_REQUEST';
+export const GET_COUNTRIES_BORDERS_REQUEST_SUCCESS = 'GET_COUNTRIES_BORDERS_REQUEST_SUCCESS';
+export const GET_COUNTRIES_BORDERS_REQUEST_FAILED = 'GET_COUNTRIES_BORDERS_REQUEST_FAILED';
+
+export const getCountriesBordersRequest = defaultActionCreator(GET_COUNTRIES_BORDERS_REQUEST, 'data');
+export const getCountriesBordersRequestSuccess = defaultActionCreator(GET_COUNTRIES_BORDERS_REQUEST_SUCCESS, 'data');
+export const getCountriesBordersRequestFailed = defaultActionCreator(GET_COUNTRIES_BORDERS_REQUEST_FAILED, 'error');
+
 
 
 export const SEARCH_USERS = 'SEARCH_USERS';

@@ -30,7 +30,7 @@ const Team = (props) => {
     <div className='team'>
       <ul className='breadcrumbs'>
         <li><Link to='/'>home</Link></li>
-        {team.activeCompetitions && (
+        {team.activeCompetitions && !!team.activeCompetitions.length && (
           <li><Link to={`/league/${team.activeCompetitions[0].id}`}>{team.activeCompetitions[0].name}</Link></li>
         )}
         <li>{team.name}</li>

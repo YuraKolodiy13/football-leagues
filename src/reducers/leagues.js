@@ -16,7 +16,11 @@ import {
   GET_TABLE_REQUEST_FAILED,
   GET_TODAYS_MATCHES_REQUEST,
   GET_SCORERS_REQUEST_SUCCESS,
-  GET_SCORERS_REQUEST_FAILED, GET_HEAD2HEAD_REQUEST_SUCCESS, GET_HEAD2HEAD_REQUEST_FAILED, GET_TABLE_REQUEST
+  GET_SCORERS_REQUEST_FAILED,
+  GET_HEAD2HEAD_REQUEST_SUCCESS,
+  GET_HEAD2HEAD_REQUEST_FAILED,
+  GET_TABLE_REQUEST,
+  GET_COUNTRIES_BORDERS_REQUEST_SUCCESS, GET_COUNTRIES_BORDERS_REQUEST
 } from "../actions/leagues";
 
 const initialState = {
@@ -35,7 +39,8 @@ const initialState = {
   head2head: {},
   loading: false,
   user: {},
-  repos: []
+  repos: [],
+  features: []
 };
 
 export default function reducer(state = initialState, action) {
@@ -158,6 +163,18 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         head2head: {}
+      };
+
+    case GET_COUNTRIES_BORDERS_REQUEST:
+      return {
+        ...state,
+        loading: true
+      };
+    case GET_COUNTRIES_BORDERS_REQUEST_SUCCESS:
+      return {
+        ...state,
+        features: action.data.features,
+        loading: false
       };
 
 
