@@ -91,5 +91,22 @@
        background-color: #ffb22f;
      }
    }
+   &.group.position-1{
+     border-top: 1px solid #e5e5e5;
+     margin-top: 30px;
+     position: relative;
+     &::before{
+       content: 'Group';
+       position: absolute;
+       top: -25px;
+       left: 70px;
+     }
+     &::after{
+       content: attr(data-group);
+       position: absolute;
+       top: -25px;
+       left: 120px;
+     }
+   }
  }
 }

@@ -27,8 +27,8 @@ const Standings = ({table}) => {
         </TableHead>
         <TableBody>
           {table.map((row, index) => (
-            <TableRow key={index}>
-              <TableCell>{index + 1}</TableCell>
+            <TableRow key={index} className={`position-${row.position} ${row.group ? 'group' : ''}`} data-group={row.group}>
+              <TableCell>{row.position}</TableCell>
               <TableCell className='team-name'>
                 <Link to={`/team/${row.team.id}`} >
                   <span style={{backgroundImage: `url(${row.team.crestUrl})`}}/>

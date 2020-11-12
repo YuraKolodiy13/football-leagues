@@ -26,8 +26,6 @@ const Team = (props) => {
     dispatch(getTeamRequest(props.match.params.id));
   }, []); // eslint-disable-line
 
-  if(loading) return <Loader/>;
-
   return (
     <div className='team'>
       <ul className='breadcrumbs'>
@@ -37,63 +35,72 @@ const Team = (props) => {
         )}
         <li>{team.name}</li>
       </ul>
-      {teamInfo.strTeam && (
-        <>
-          <div className="banner" style={{backgroundImage: `url(${teamInfo.strTeamBanner})`}}/>
-          <h1>{teamInfo.strTeam}</h1>
-          <div className="banner" style={{backgroundImage: `url(${teamInfo.strStadiumThumb})`}}/>
-          <p>{teamInfo.strStadiumDescription}</p>
-          <div className="banner" style={{backgroundImage: `url(${teamInfo.strTeamFanart4})`}}/>
-          <p>{teamInfo.strDescriptionEN}</p>
-        </>
-      )}
 
-      <h2>squad</h2>
-      <TableContainer component={Paper}>
-        <Table aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell>#</TableCell>
-              <TableCell>Name</TableCell>
-              <TableCell>Position</TableCell>
-              <TableCell>dateOfBirth</TableCell>
-              <TableCell>nationality</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {team.squad && team.squad.map((row, index) => (
-              <TableRow key={row.id} onClick={() => history.push(`/player/${row.name}`)}>
-                <TableCell>{index + 1}</TableCell>
-                <TableCell>{row.name}</TableCell>
-                <TableCell>{row.position}</TableCell>
-                <TableCell>
-                  {new Date(row.dateOfBirth + '').toLocaleDateString('en-US', {
-                    day: 'numeric',
-                    month: 'long',
-                    year: 'numeric'
-                  })}</TableCell>
-                <TableCell>{row.nationality}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      {loading
+        ? <Loader/>
+        : <>
+            {teamInfo.strTeam && (
+              <>
+                <div className="banner" style={{backgroundImage: `url(${teamInfo.strTeamBanner})`}}/>
+                <h1>{teamInfo.strTeam}</h1>
+                <div className="banner" style={{backgroundImage: `url(${teamInfo.strStadiumThumb})`}}/>
+                <p>{teamInfo.strStadiumDescription}</p>
+                <div className="banner" style={{backgroundImage: `url(${teamInfo.strTeamFanart4})`}}/>
+                <p>{teamInfo.strDescriptionEN}</p>
+              </>
+            )}
 
-      <h2>next games</h2>
-      {teamNextEvents && teamNextEvents.map(item =>
-        <div key={item.idEvent}>
-          {item.strEvent}
-        </div>
-      )}
+            <h2>squad</h2>
+            <TableContainer component={Paper}>
+              <Table aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell>#</TableCell>
+                    <TableCell>Name</TableCell>
+                    <TableCell>Position</TableCell>
+                    <TableCell>dateOfBirth</TableCell>
+                    <TableCell>nationality</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {team.squad && team.squad.map((row, index) => (
+                    <TableRow key={row.id} onClick={() => history.push(`/player/${row.name}`)}>
+                      <TableCell>{index + 1}</TableCell>
+                      <TableCell>{row.name}</TableCell>
+                      <TableCell>{row.position}</TableCell>
+                      <TableCell>
+                        {new Date(row.dateOfBirth + '').toLocaleDateString('en-US', {
+                          day: 'numeric',
+                          month: 'long',
+                          year: 'numeric'
+                        })}</TableCell>
+                      <TableCell>{row.nationality}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
 
-      <h2>prev games</h2>
-      {teamPrevEvents && teamPrevEvents.map(item =>
-        <div key={item.idEvent}>
-          {item.strHomeTeam}
-          {item.intHomeScore}:{item.intAwayScore}
-          {item.strAwayTeam}
-        </div>
-      )}
+            <h2>next games</h2>
+            {teamNextEvents && teamNextEvents.map(item =>
+              <div key={item.idEvent}>
+                {item.strEvent}
+              </div>
+            )}
+
+            <h2>prev games</h2>
+            {teamPrevEvents && teamPrevEvents.map(item =>
+              <div key={item.idEvent}>
+                {item.strHomeTeam}
+                {item.intHomeScore}:{item.intAwayScore}
+                {item.strAwayTeam}
+              </div>
+            )}
+          </>
+
+      }
+
+
     </div>
   )
 };

@@ -16,7 +16,7 @@ import {
   GET_TABLE_REQUEST_FAILED,
   GET_TODAYS_MATCHES_REQUEST,
   GET_SCORERS_REQUEST_SUCCESS,
-  GET_SCORERS_REQUEST_FAILED, GET_HEAD2HEAD_REQUEST_SUCCESS, GET_HEAD2HEAD_REQUEST_FAILED
+  GET_SCORERS_REQUEST_FAILED, GET_HEAD2HEAD_REQUEST_SUCCESS, GET_HEAD2HEAD_REQUEST_FAILED, GET_TABLE_REQUEST
 } from "../actions/leagues";
 
 const initialState = {
@@ -66,6 +66,7 @@ export default function reducer(state = initialState, action) {
       };
 
     case GET_PLAYER_REQUEST:
+    case GET_TABLE_REQUEST:
       return {
         ...state,
         loading: true
@@ -81,7 +82,8 @@ export default function reducer(state = initialState, action) {
     case GET_TABLE_REQUEST_SUCCESS:
       return {
         ...state,
-        table: action.data.data
+        table: action.data.data,
+        loading: false
       };
     case GET_TABLE_REQUEST_FAILED:
       return {

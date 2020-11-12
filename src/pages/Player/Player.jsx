@@ -16,8 +16,6 @@ const Player = (props) => {
     dispatch(getPlayerRequest(props.match.params.id));
   }, []); // eslint-disable-line
 
-  if(loading) return <Loader/>;
-
   return (
     <div className='player'>
       <ul className='breadcrumbs'>
@@ -29,23 +27,29 @@ const Player = (props) => {
           </>
         )}
       </ul>
-      {player.strPlayer
-        ? <div className='player__wrapper'>
-            <div className="player__photo">
-              <img src={player.strRender
-                ? player.strRender
-                : player.strCutout
-                  ? player.strCutout
-                  : player.strThumb
-              }
-               alt=""/>
-            </div>
-            <div className="player__info">
-              <h1>{player.strPlayer}</h1>
-              <p>{player.strDescriptionEN}</p>
-            </div>
-          </div>
-        : 'no info about player'
+
+      {loading
+        ? <Loader/>
+        : <>
+            {player.strPlayer
+              ? <div className='player__wrapper'>
+                <div className="player__photo">
+                  <img src={player.strRender
+                    ? player.strRender
+                    : player.strCutout
+                      ? player.strCutout
+                      : player.strThumb
+                  }
+                       alt=""/>
+                </div>
+                <div className="player__info">
+                  <h1>{player.strPlayer}</h1>
+                  <p>{player.strDescriptionEN}</p>
+                </div>
+              </div>
+              : 'no info about player'
+            }
+          </>
       }
     </div>
   )

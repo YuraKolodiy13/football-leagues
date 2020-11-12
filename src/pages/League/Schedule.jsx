@@ -1,10 +1,7 @@
 import React, {useState} from 'react';
-import {useSelector} from "react-redux";
 import MatchDetailModal from "../../components/MatchDetailModal/MatchDetailModal";
 
-const Schedule = () => {
-
-  const schedule = useSelector(state => state.leagues.schedule);
+const Schedule = ({schedule}) => {
   const [isMatchDetailModalOpen, setIsMatchDetailModalOpen] = useState(false);
   const [currentMatch, setCurrentMatch] = useState({});
 
