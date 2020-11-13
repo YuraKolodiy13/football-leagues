@@ -4,7 +4,7 @@ import Parser from 'rss-parser';
 const API_URL = process.env.NODE_ENV === 'development' ? 'http://localhost:8080/proxy/' : '/proxy/';
 
 const API_URL_2 = 'https://www.thesportsdb.com/api/v1/json/1/';
-const API_URL_3 = 'http://api.football-data.org/v2/';
+const API_URL_3 = 'https://api.football-data.org/v2/';
 
 const CORS_PROXY = "https://cors-anywhere.herokuapp.com/";
 
