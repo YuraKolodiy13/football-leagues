@@ -102,7 +102,7 @@ const Team = (props) => {
             <Schedule schedule={teamNextEvents}/>
           </TabPanel>
           <TabPanel value={value} index={3}>
-            <Schedule schedule={teamPrevEvents.reverse()}/>
+            <Schedule schedule={teamPrevEvents.slice().reverse()}/>
           </TabPanel>
           <TabPanel value={value} index={4}>
             {!!Object.keys(teamRssNews).length && (
