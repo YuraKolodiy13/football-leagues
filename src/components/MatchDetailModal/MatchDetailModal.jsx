@@ -176,7 +176,7 @@ const MatchDetailModal = ({open, close, currentMatch}) => {
                 }
               </TabPanel>
               <TabPanel value={value} index={1}>
-                {currentMatch.homeTeam.lineup.length > 0
+                {currentMatch.homeTeam.lineup && currentMatch.homeTeam.lineup.length > 0
                   ?<div className="lineups">
                     <div className="lineups__field field" style={{backgroundImage: `url(${field})`}}>
                       <div className="field__home">

@@ -20,13 +20,14 @@ import {
   GET_HEAD2HEAD_REQUEST_SUCCESS,
   GET_HEAD2HEAD_REQUEST_FAILED,
   GET_TABLE_REQUEST,
-  GET_COUNTRIES_BORDERS_REQUEST_SUCCESS, GET_COUNTRIES_BORDERS_REQUEST
+  GET_COUNTRIES_BORDERS_REQUEST_SUCCESS, GET_COUNTRIES_BORDERS_REQUEST, PARSE_RSS_DATA_SUCCESS, PARSE_RSS_DATA_FAILED
 } from "../actions/leagues";
 
 const initialState = {
   teams: [],
   team: [],
   teamInfo: {},
+  teamRssNews: {},
   table: [],
   schedule: [],
   teamNextEvents: [],
@@ -99,13 +100,13 @@ export default function reducer(state = initialState, action) {
     case GET_TEAM_NEXT_SCHEDULE_REQUEST_SUCCESS:
       return {
         ...state,
-        teamNextEvents: action.data.events
+        teamNextEvents: action.data.matches
       };
 
     case GET_TEAM_PREV_SCHEDULE_REQUEST_SUCCESS:
       return {
         ...state,
-        teamPrevEvents: action.data.results
+        teamPrevEvents: action.data.matches
       };
 
     case GET_SCHEDULE_REQUEST_SUCCESS:
@@ -170,16 +171,31 @@ export default function reducer(state = initialState, action) {
         ...state,
         loading: true
       };
+
+    case PARSE_RSS_DATA_SUCCESS:
+      return {
+        ...state,
+        teamRssNews: action.data
+      };
+
+    case PARSE_RSS_DATA_FAILED:
+      return {
+        ...state,
+        teamRssNews: {}
+      };
+
+
+
+
+
+
+    //  for test
     case GET_COUNTRIES_BORDERS_REQUEST_SUCCESS:
       return {
         ...state,
         features: action.data.features,
         loading: false
       };
-
-
-
-
 
     case SEARCH_USERS_SUCCESS:
       return {

@@ -96,6 +96,18 @@ export const getHead2HeadRequest = defaultActionCreator(GET_HEAD2HEAD_REQUEST, '
 export const getHead2HeadRequestSuccess = defaultActionCreator(GET_HEAD2HEAD_REQUEST_SUCCESS, 'data');
 export const getHead2HeadRequestFailed = defaultActionCreator(GET_HEAD2HEAD_REQUEST_FAILED, 'error');
 
+export const PARSE_RSS_DATA = 'PARSE_RSS_DATA';
+export const PARSE_RSS_DATA_SUCCESS = 'PARSE_RSS_DATA_SUCCESS';
+export const PARSE_RSS_DATA_FAILED = 'PARSE_RSS_DATA_FAILED';
+
+export const parseRssDataRequest = defaultActionCreator(PARSE_RSS_DATA, 'data');
+export const parseRssDataRequestSuccess = defaultActionCreator(PARSE_RSS_DATA_SUCCESS, 'data');
+export const parseRssDataRequestFailed = defaultActionCreator(PARSE_RSS_DATA_FAILED, 'error');
+
+
+
+
+// for test
 export const GET_COUNTRIES_BORDERS_REQUEST = 'GET_COUNTRIES_BORDERS_REQUEST';
 export const GET_COUNTRIES_BORDERS_REQUEST_SUCCESS = 'GET_COUNTRIES_BORDERS_REQUEST_SUCCESS';
 export const GET_COUNTRIES_BORDERS_REQUEST_FAILED = 'GET_COUNTRIES_BORDERS_REQUEST_FAILED';
@@ -103,8 +115,6 @@ export const GET_COUNTRIES_BORDERS_REQUEST_FAILED = 'GET_COUNTRIES_BORDERS_REQUE
 export const getCountriesBordersRequest = defaultActionCreator(GET_COUNTRIES_BORDERS_REQUEST, 'data');
 export const getCountriesBordersRequestSuccess = defaultActionCreator(GET_COUNTRIES_BORDERS_REQUEST_SUCCESS, 'data');
 export const getCountriesBordersRequestFailed = defaultActionCreator(GET_COUNTRIES_BORDERS_REQUEST_FAILED, 'error');
-
-
 
 export const SEARCH_USERS = 'SEARCH_USERS';
 export const SEARCH_USERS_SUCCESS = 'SEARCH_USERS_SUCCESS';

@@ -1,7 +1,6 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {getTeamRequest} from "../../actions/leagues";
-
 import './Team.scss'
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
@@ -12,6 +11,10 @@ import TableBody from "@material-ui/core/TableBody";
 import {Link, useHistory} from "react-router-dom";
 import TableContainer from "@material-ui/core/TableContainer";
 import Loader from "../../components/Loader/Loader";
+import Tab from "@material-ui/core/Tab";
+import Tabs from "@material-ui/core/Tabs";
+import TabPanel from "../../components/TabPanel/TabPanel";
+import Schedule from "../League/Schedule";
 
 const Team = (props) => {
   const dispatch = useDispatch();
@@ -20,7 +23,9 @@ const Team = (props) => {
   const loading = useSelector(state => state.leagues.loading);
   const teamNextEvents = useSelector(state => state.leagues.teamNextEvents);
   const teamPrevEvents = useSelector(state => state.leagues.teamPrevEvents);
+  const teamRssNews = useSelector(state => state.leagues.teamRssNews);
   const history = useHistory();
+  const [value, setValue] = useState(0);
 
   useEffect(() => {
     dispatch(getTeamRequest(props.match.params.id));
@@ -39,6 +44,18 @@ const Team = (props) => {
       {loading
         ? <Loader/>
         : <>
+          <Tabs
+            value={value}
+            onChange={(e, newValue) => setValue(newValue)}
+          >
+            <Tab label='About'/>
+            <Tab label='Squad' />
+            <Tab label='Schedule' />
+            <Tab label='Prev matches' />
+            <Tab label='News' />
+          </Tabs>
+
+          <TabPanel value={value} index={0}>
             {teamInfo.strTeam && (
               <>
                 <div className="banner" style={{backgroundImage: `url(${teamInfo.strTeamBanner})`}}/>
@@ -49,8 +66,8 @@ const Team = (props) => {
                 <p>{teamInfo.strDescriptionEN}</p>
               </>
             )}
-
-            <h2>squad</h2>
+          </TabPanel>
+          <TabPanel value={value} index={1}>
             <TableContainer component={Paper}>
               <Table aria-label="simple table">
                 <TableHead>
@@ -80,22 +97,29 @@ const Team = (props) => {
                 </TableBody>
               </Table>
             </TableContainer>
-
-            <h2>next games</h2>
-            {teamNextEvents && teamNextEvents.map(item =>
-              <div key={item.idEvent}>
-                {item.strEvent}
-              </div>
+          </TabPanel>
+          <TabPanel value={value} index={2}>
+            <Schedule schedule={teamNextEvents}/>
+          </TabPanel>
+          <TabPanel value={value} index={3}>
+            <Schedule schedule={teamPrevEvents.reverse()}/>
+          </TabPanel>
+          <TabPanel value={value} index={4}>
+            {!!Object.keys(teamRssNews).length && (
+              <>
+                <h2>{teamRssNews.title}</h2>
+                <ul>
+                  {teamRssNews.items.map((item, index) =>
+                    <li>
+                      <h4>{item.title}</h4>
+                      <p>{item.contentSnippet}</p>
+                      <a href={item.link} rel="noreferrer"  target='_blank'/>
+                    </li>
+                  )}
+                </ul>
+              </>
             )}
-
-            <h2>prev games</h2>
-            {teamPrevEvents && teamPrevEvents.map(item =>
-              <div key={item.idEvent}>
-                {item.strHomeTeam}
-                {item.intHomeScore}:{item.intAwayScore}
-                {item.strAwayTeam}
-              </div>
-            )}
+          </TabPanel>
           </>
 
       }

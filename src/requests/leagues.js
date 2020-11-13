@@ -1,10 +1,14 @@
 import service from './service';
+import Parser from 'rss-parser';
 
 const API_URL = process.env.NODE_ENV === 'development' ? 'http://localhost:8080/proxy/' : '/proxy/';
 
 const API_URL_2 = 'https://www.thesportsdb.com/api/v1/json/1/';
 const API_URL_3 = 'http://api.football-data.org/v2/';
-// const API_URL = 'http://api.football-data.org/v2/';
+
+const CORS_PROXY = "https://cors-anywhere.herokuapp.com/";
+
+const parser = new Parser();
 
 
 export const getTeamsApi = () => {
@@ -44,14 +48,14 @@ export const getScheduleApi = ({matchday, id}) => {
 };
 
 export const getTeamNextScheduleApi = (team_id) => {
-  return service.get(
-    `${API_URL_2}eventsnext.php?id=${team_id}`,
+  return service.getWithToken(
+    `${API_URL_3}teams/${team_id}/matches?status=SCHEDULED`,
   )
 };
 
 export const getTeamPrevScheduleApi = (team_id) => {
-  return service.get(
-    `${API_URL_2}eventslast.php?id=${team_id}`,
+  return service.getWithToken(
+    `${API_URL_3}teams/${team_id}/matches?status=FINISHED`,
   )
 };
 
@@ -78,6 +82,15 @@ export const getHead2HeadApi = (match_id) => {
     `${API_URL_3}matches/${match_id}`,
   )
 };
+
+export const parseRssDataApi = (rss) => {
+  return parser.parseURL(`${CORS_PROXY}${rss}`);
+};
+
+
+
+
+
 
 export const searchUsersApi = (user) => {
   return service.get(
