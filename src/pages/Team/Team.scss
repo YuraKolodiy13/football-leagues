@@ -4,4 +4,60 @@
     background-size: cover;
     background-position: center;
   }
+  .news{
+    ul{
+      margin: 0 -10px;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      li{
+        position: relative;
+        margin-bottom: 20px;
+        width: 33.33%;
+        padding: 0 10px;
+        box-sizing: border-box;
+        display: flex;
+        transition: .3s;
+        &:hover{
+          transform: translateY(-5px);
+        }
+        .MuiCardMedia-root{
+          min-height: 50px;
+        }
+        .MuiCardContent-root{
+          padding-bottom: 26px;
+          position: static;
+        }
+        h4{
+          margin: 0 0 5px;
+          font-size: 14px;
+        }
+        p{
+          font-size: 12px;
+          line-height: 16px;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          word-wrap: break-word;
+          -webkit-line-clamp: 3;
+          overflow: hidden;
+        }
+        span{
+          position: absolute;
+          bottom: 10px;
+          right: 25px;
+          color: #656565;
+          font-size: 12px;
+        }
+        a{
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          font-size: 0;
+        }
+      }
+    }
+  }
 }

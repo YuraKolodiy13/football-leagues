@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import MatchDetailModal from "../../components/MatchDetailModal/MatchDetailModal";
+import MatchDetailModal from "../MatchDetailModal/MatchDetailModal";
 
-const Schedule = ({schedule}) => {
+const Matches = ({matches}) => {
   const [isMatchDetailModalOpen, setIsMatchDetailModalOpen] = useState(false);
   const [currentMatch, setCurrentMatch] = useState({});
 
@@ -11,9 +11,9 @@ const Schedule = ({schedule}) => {
   };
 
   return (
-    <div className='schedule'>
+    <div className='matches'>
       <ul>
-        {schedule.map((row) => (
+        {matches.map((row) => (
           <li key={row.id} className='match' onClick={() => viewMatch(row)}>
               <span className='matchTime'>
                 {new Date(row.utcDate + '').toLocaleDateString('uk', {
@@ -43,4 +43,4 @@ const Schedule = ({schedule}) => {
   )
 };
 
-export default Schedule;
+export default Matches;

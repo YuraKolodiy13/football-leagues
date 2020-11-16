@@ -24,7 +24,7 @@ import {
   GET_COUNTRIES_BORDERS_REQUEST,
   PARSE_RSS_DATA_SUCCESS,
   PARSE_RSS_DATA_FAILED,
-  GET_PLAYER_INFO_REQUEST_SUCCESS, GET_PLAYER_MATCHES_REQUEST_SUCCESS
+  GET_PLAYER_INFO_REQUEST_SUCCESS, GET_PLAYER_MATCHES_REQUEST_SUCCESS, PARSE_RSS_DATA
 } from "../actions/leagues";
 
 const initialState = {
@@ -188,6 +188,12 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         loading: true
+      };
+
+    case PARSE_RSS_DATA:
+      return {
+        ...state,
+        teamRssNews: {}
       };
 
     case PARSE_RSS_DATA_SUCCESS:

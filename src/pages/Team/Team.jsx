@@ -14,7 +14,12 @@ import Loader from "../../components/Loader/Loader";
 import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
 import TabPanel from "../../components/TabPanel/TabPanel";
-import Schedule from "../League/Schedule";
+import Matches from "../../components/Matches/Matches";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardMedia from "@material-ui/core/CardMedia";
+import CardContent from "@material-ui/core/CardContent";
+import Card from "@material-ui/core/Card";
+import Button from "@material-ui/core/Button";
 
 const Team = (props) => {
   const dispatch = useDispatch();
@@ -26,6 +31,7 @@ const Team = (props) => {
   const teamRssNews = useSelector(state => state.leagues.teamRssNews);
   const history = useHistory();
   const [value, setValue] = useState(0);
+  const [visibleNews, setVisibleNews] = useState(9);
 
   useEffect(() => {
     dispatch(getTeamRequest(props.match.params.id));
@@ -99,26 +105,50 @@ const Team = (props) => {
             </TableContainer>
           </TabPanel>
           <TabPanel value={value} index={2}>
-            <Schedule schedule={teamNextEvents}/>
+            <Matches matches={teamNextEvents}/>
           </TabPanel>
           <TabPanel value={value} index={3}>
-            <Schedule schedule={teamPrevEvents.slice().reverse()}/>
+            <Matches matches={teamPrevEvents.slice().reverse()}/>
           </TabPanel>
           <TabPanel value={value} index={4}>
-            {!!Object.keys(teamRssNews).length && (
-              <>
+            {!!Object.keys(teamRssNews).length
+              ? <div className='news'>
                 <h2>{teamRssNews.title}</h2>
                 <ul>
-                  {teamRssNews.items.map((item, index) =>
+                  {teamRssNews.items.slice(0, visibleNews).map((item, index) =>
                     <li>
-                      <h4>{item.title}</h4>
-                      <p>{item.contentSnippet}</p>
-                      <a href={item.link} rel="noreferrer"  target='_blank'/>
+                      <Card>
+                        <CardActionArea>
+                          <CardMedia
+                            image={teamInfo.strTeamBanner}
+                            title="Contemplative Reptile"
+                          />
+                          <CardContent>
+                            <h4>{item.title}</h4>
+                            <p>{item.contentSnippet}</p>
+                            <span>
+                              {new Date(item.isoDate + '').toLocaleDateString('uk', {
+                                year: 'numeric',
+                                month: 'numeric',
+                                day: 'numeric',
+                                hour12 : false,
+                                hour:  "2-digit",
+                                minute: "2-digit",
+                              })}
+                            </span>
+                          </CardContent>
+                        </CardActionArea>
+                      </Card>
+                      <a href={item.link} rel="noreferrer"  target='_blank'>open news</a>
                     </li>
                   )}
                 </ul>
-              </>
-            )}
+                {visibleNews < teamRssNews.items.length &&
+                  <Button onClick={() => setVisibleNews(visibleNews + 9)} variant="contained" color="primary">Load more</Button>
+                }
+              </div>
+              : <p>no news</p>
+            }
           </TabPanel>
           </>
 

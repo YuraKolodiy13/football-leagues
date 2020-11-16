@@ -4,7 +4,7 @@ import {getPlayerRequest} from "../../actions/leagues";
 import './Player.scss'
 import Loader from "../../components/Loader/Loader";
 import {Link} from "react-router-dom";
-import Schedule from "../League/Schedule";
+import Matches from "../../components/Matches/Matches";
 import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
 import TabPanel from "../../components/TabPanel/TabPanel";
@@ -64,7 +64,7 @@ const Player = (props) => {
               }
             </TabPanel>
             <TabPanel value={value} index={1}>
-              <Schedule schedule={playerMatches} />
+              <Matches matches={playerMatches} />
             </TabPanel>
           </>
       }

@@ -49,9 +49,7 @@ export function* getTeamInfo(action) {
     const response = yield call(getTeamInfoApi, action.data);
     const team = response.data.teams ? response.data.teams[0] : {};
     yield put({type: leaguesActions.GET_TEAM_INFO_REQUEST_SUCCESS, data: team});
-    if(team.strRSS){
-      yield put({type: leaguesActions.PARSE_RSS_DATA, data: team.strRSS})
-    }
+    yield put({type: leaguesActions.PARSE_RSS_DATA, data: team.strRSS})
   } catch (e) {
     yield put({ type: leaguesActions.GET_TEAM_INFO_REQUEST_FAILED, error: e.response });
   }

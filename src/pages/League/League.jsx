@@ -5,7 +5,7 @@ import './League.scss'
 import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
 import Standings from "./Standings";
-import Schedule from "./Schedule";
+import Matches from "../../components/Matches/Matches";
 import TabPanel from "../../components/TabPanel/TabPanel";
 import {Link} from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
@@ -97,7 +97,7 @@ const League = (props) => {
                   <Standings table={table}/>
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                  <Schedule schedule={schedule}/>
+                  <Matches matches={schedule}/>
                 </TabPanel>
                 <TabPanel value={value} index={2}>
                   {!!scorers.length
