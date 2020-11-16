@@ -35,6 +35,13 @@ body{
   .MuiTableCell-root{
     font-family: 'Fira Sans', sans-serif;
   }
+
+  .showMore{
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 13px;
+  }
 }
 
 
@@ -61,7 +68,12 @@ a{
     text-decoration: underline;
   }
 }
-
+.matches{
+  ul{
+    margin: 10px 0;
+    padding: 0;
+  }
+}
 .match{
   border-bottom: 1px solid #e5e5e5;
   text-align: center;

@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import MatchDetailModal from "../MatchDetailModal/MatchDetailModal";
 
-const Matches = ({matches}) => {
+const Matches = ({matches, visibleMatches}) => {
   const [isMatchDetailModalOpen, setIsMatchDetailModalOpen] = useState(false);
   const [currentMatch, setCurrentMatch] = useState({});
+  const visible = visibleMatches ? visibleMatches : matches.length;
 
   const viewMatch = (match) => {
     setCurrentMatch(match);
@@ -13,7 +14,7 @@ const Matches = ({matches}) => {
   return (
     <div className='matches'>
       <ul>
-        {matches.map((row) => (
+        {matches.slice(0, visible).map((row) => (
           <li key={row.id} className='match' onClick={() => viewMatch(row)}>
               <span className='matchTime'>
                 {new Date(row.utcDate + '').toLocaleDateString('uk', {

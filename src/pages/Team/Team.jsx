@@ -19,7 +19,7 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Card from "@material-ui/core/Card";
-import Button from "@material-ui/core/Button";
+import {Bar} from "react-chartjs-2";
 
 const Team = (props) => {
   const dispatch = useDispatch();
@@ -32,10 +32,39 @@ const Team = (props) => {
   const history = useHistory();
   const [value, setValue] = useState(0);
   const [visibleNews, setVisibleNews] = useState(9);
+  const [visibleMatches, setVisibleMatches] = useState(10);
 
   useEffect(() => {
     dispatch(getTeamRequest(props.match.params.id));
   }, []); // eslint-disable-line
+
+  const data = {
+    labels: team.squad && [...team.squad.reduce((prev, item) => {
+      if(item.role !== 'COACH') return [...prev, item.name];
+      return prev;
+    }, [])],
+    datasets: [
+      {
+        label: 'Age',
+        backgroundColor: 'rgba(8, 95, 0, .8)',
+        data: team.squad && [...team.squad.slice(0, -1).reduce((prev, item) => {
+          if(item.role !== 'COACH') return [...prev, new Date().getFullYear() - new Date(item.dateOfBirth).getFullYear()];
+          return prev;
+        }, [])]
+      }
+    ]
+  };
+
+  const options = {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero:true,
+          min:16
+        }
+      }]
+    }
+  };
 
   return (
     <div className='team'>
@@ -103,9 +132,13 @@ const Team = (props) => {
                 </TableBody>
               </Table>
             </TableContainer>
+            <Bar data={data} options={options}/>
           </TabPanel>
           <TabPanel value={value} index={2}>
-            <Matches matches={teamNextEvents}/>
+            <Matches matches={teamNextEvents} visibleMatches={visibleMatches}/>
+            {visibleMatches < teamNextEvents.length &&
+              <a href className='showMore' onClick={() => setVisibleMatches(visibleMatches + 10)}>Show more matches</a>
+            }
           </TabPanel>
           <TabPanel value={value} index={3}>
             <Matches matches={teamPrevEvents.slice().reverse()}/>
@@ -116,7 +149,7 @@ const Team = (props) => {
                 <h2>{teamRssNews.title}</h2>
                 <ul>
                   {teamRssNews.items.slice(0, visibleNews).map((item, index) =>
-                    <li>
+                    <li key={index}>
                       <Card>
                         <CardActionArea>
                           <CardMedia
@@ -144,7 +177,7 @@ const Team = (props) => {
                   )}
                 </ul>
                 {visibleNews < teamRssNews.items.length &&
-                  <Button onClick={() => setVisibleNews(visibleNews + 9)} variant="contained" color="primary">Load more</Button>
+                  <a href className='showMore' onClick={() => setVisibleNews(visibleNews + 9)}>Show more matches</a>
                 }
               </div>
               : <p>no news</p>
