@@ -29,7 +29,19 @@ export const getTeamInfoApi = (team) => {
   )
 };
 
-export const getPlayerApi = (player) => {
+export const getPlayerApi = (player_id) => {
+  return service.getWithToken(
+    `${API_URL_3}players/${player_id}`,
+  )
+};
+
+export const getPlayerMatchesApi = (player_id) => {
+  return service.getWithToken(
+    `${API_URL_3}players/${player_id}/matches`,
+  )
+};
+
+export const getPlayerInfoApi = (player) => {
   return service.get(
     `${API_URL_2}searchplayers.php?p=${player}`,
   )

@@ -15,7 +15,7 @@ import {
   searchUsersApi,
   getUserRepoApi,
   getScorersApi,
-  getHead2HeadApi, getCountriesBordersApi, parseRssDataApi,
+  getHead2HeadApi, getCountriesBordersApi, parseRssDataApi, getPlayerInfoApi, getPlayerMatchesApi,
 } from "../requests/leagues";
 
 const leagues_ids = [2020, 2009, 2035, 2040, 2047, 2049, 2050, 2016, 2021, 2057, 2146, 2018, 2001, 2007, 2031, 2015, 2002,
@@ -61,8 +61,28 @@ export function* getPlayer(action) {
   try {
     const response = yield call(getPlayerApi, action.data);
     yield put({type: leaguesActions.GET_PLAYER_REQUEST_SUCCESS, data: response.data});
+    yield put({type: leaguesActions.GET_PLAYER_MATCHES_REQUEST, data: action.data});
+    yield put({type: leaguesActions.GET_PLAYER_INFO_REQUEST, data: response.data.name})
   } catch (e) {
     yield put({ type: leaguesActions.GET_PLAYER_REQUEST_FAILED, error: e.response });
+  }
+}
+
+export function* getPlayerMatches(action) {
+  try {
+    const response = yield call(getPlayerMatchesApi, action.data);
+    yield put({type: leaguesActions.GET_PLAYER_MATCHES_REQUEST_SUCCESS, data: response.data});
+  } catch (e) {
+    yield put({ type: leaguesActions.GET_PLAYER_MATCHES_REQUEST_FAILED, error: e.response });
+  }
+}
+
+export function* getPlayerInfo(action) {
+  try {
+    const response = yield call(getPlayerInfoApi, action.data);
+    yield put({type: leaguesActions.GET_PLAYER_INFO_REQUEST_SUCCESS, data: response.data});
+  } catch (e) {
+    yield put({ type: leaguesActions.GET_PLAYER_INFO_REQUEST_FAILED, error: e.response });
   }
 }
 
@@ -217,6 +237,8 @@ export default all([
   takeEvery(leaguesActions.GET_TEAM_REQUEST, getTeam),
   takeEvery(leaguesActions.GET_TEAM_INFO_REQUEST, getTeamInfo),
   takeEvery(leaguesActions.GET_PLAYER_REQUEST, getPlayer),
+  takeEvery(leaguesActions.GET_PLAYER_MATCHES_REQUEST, getPlayerMatches),
+  takeEvery(leaguesActions.GET_PLAYER_INFO_REQUEST, getPlayerInfo),
   takeEvery(leaguesActions.GET_TABLE_REQUEST, getTable),
   takeEvery(leaguesActions.GET_TEAM_NEXT_SCHEDULE_REQUEST, getTeamNextSchedule),
   takeEvery(leaguesActions.GET_TEAM_PREV_SCHEDULE_REQUEST, getTeamPrevSchedule),

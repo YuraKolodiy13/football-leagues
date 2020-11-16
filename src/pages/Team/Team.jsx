@@ -81,7 +81,7 @@ const Team = (props) => {
                 </TableHead>
                 <TableBody>
                   {team.squad && team.squad.map((row, index) => (
-                    <TableRow key={row.id} onClick={() => history.push(`/player/${row.name}`)}>
+                    <TableRow key={row.id} onClick={() => history.push(`/player/${row.id}`)}>
                       <TableCell>{index + 1}</TableCell>
                       <TableCell>{row.name}</TableCell>
                       <TableCell>{row.position}</TableCell>

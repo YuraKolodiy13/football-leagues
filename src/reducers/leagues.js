@@ -20,7 +20,11 @@ import {
   GET_HEAD2HEAD_REQUEST_SUCCESS,
   GET_HEAD2HEAD_REQUEST_FAILED,
   GET_TABLE_REQUEST,
-  GET_COUNTRIES_BORDERS_REQUEST_SUCCESS, GET_COUNTRIES_BORDERS_REQUEST, PARSE_RSS_DATA_SUCCESS, PARSE_RSS_DATA_FAILED
+  GET_COUNTRIES_BORDERS_REQUEST_SUCCESS,
+  GET_COUNTRIES_BORDERS_REQUEST,
+  PARSE_RSS_DATA_SUCCESS,
+  PARSE_RSS_DATA_FAILED,
+  GET_PLAYER_INFO_REQUEST_SUCCESS, GET_PLAYER_MATCHES_REQUEST_SUCCESS
 } from "../actions/leagues";
 
 const initialState = {
@@ -37,6 +41,8 @@ const initialState = {
   scorers: [],
   matches: {},
   player: {},
+  playerMatches: [],
+  playerInfo: {},
   head2head: {},
   loading: false,
   user: {},
@@ -81,8 +87,20 @@ export default function reducer(state = initialState, action) {
     case GET_PLAYER_REQUEST_SUCCESS:
       return {
         ...state,
-        player: action.data.player ? action.data.player[0] : {},
+        player: action.data,
         loading: false
+      };
+
+    case GET_PLAYER_MATCHES_REQUEST_SUCCESS:
+      return {
+        ...state,
+        playerMatches: action.data.matches,
+      };
+
+    case GET_PLAYER_INFO_REQUEST_SUCCESS:
+      return {
+        ...state,
+        playerInfo: action.data.player ? action.data.player[0] : {},
       };
 
     case GET_TABLE_REQUEST_SUCCESS:

@@ -32,6 +32,22 @@ export const getPlayerRequest = defaultActionCreator(GET_PLAYER_REQUEST, 'data')
 export const getPlayerRequestSuccess = defaultActionCreator(GET_PLAYER_REQUEST_SUCCESS, 'data');
 export const getPlayerRequestFailed = defaultActionCreator(GET_PLAYER_REQUEST_FAILED, 'error');
 
+export const GET_PLAYER_MATCHES_REQUEST = 'GET_PLAYER_MATCHES_REQUEST';
+export const GET_PLAYER_MATCHES_REQUEST_SUCCESS = 'GET_PLAYER_MATCHES_REQUEST_SUCCESS';
+export const GET_PLAYER_MATCHES_REQUEST_FAILED = 'GET_PLAYER_MATCHES_REQUEST_FAILED';
+
+export const getPlayerMatchesRequest = defaultActionCreator(GET_PLAYER_MATCHES_REQUEST, 'data');
+export const getPlayerMatchesRequestSuccess = defaultActionCreator(GET_PLAYER_MATCHES_REQUEST_SUCCESS, 'data');
+export const getPlayerMatchesRequestFailed = defaultActionCreator(GET_PLAYER_MATCHES_REQUEST_FAILED, 'error');
+
+export const GET_PLAYER_INFO_REQUEST = 'GET_PLAYER_INFO_REQUEST';
+export const GET_PLAYER_INFO_REQUEST_SUCCESS = 'GET_PLAYER_INFO_REQUEST_SUCCESS';
+export const GET_PLAYER_INFO_REQUEST_FAILED = 'GET_PLAYER_INFO_REQUEST_FAILED';
+
+export const getPlayerInfoRequest = defaultActionCreator(GET_PLAYER_INFO_REQUEST, 'data');
+export const getPlayerInfoRequestSuccess = defaultActionCreator(GET_PLAYER_INFO_REQUEST_SUCCESS, 'data');
+export const getPlayerInfoRequestFailed = defaultActionCreator(GET_PLAYER_INFO_REQUEST_FAILED, 'error');
+
 export const GET_TABLE_REQUEST = 'GET_TABLE_REQUEST';
 export const GET_TABLE_REQUEST_SUCCESS = 'GET_TABLE_REQUEST_SUCCESS';
 export const GET_TABLE_REQUEST_FAILED = 'GET_TABLE_REQUEST_FAILED';
