@@ -137,7 +137,7 @@ const Team = (props) => {
           <TabPanel value={value} index={2}>
             <Matches matches={teamNextEvents} visibleMatches={visibleMatches}/>
             {visibleMatches < teamNextEvents.length &&
-              <a href className='showMore' onClick={() => setVisibleMatches(visibleMatches + 10)}>Show more matches</a>
+              <span className='showMore' onClick={() => setVisibleMatches(visibleMatches + 10)}>Show more matches</span>
             }
           </TabPanel>
           <TabPanel value={value} index={3}>
@@ -177,7 +177,7 @@ const Team = (props) => {
                   )}
                 </ul>
                 {visibleNews < teamRssNews.items.length &&
-                  <a href className='showMore' onClick={() => setVisibleNews(visibleNews + 9)}>Show more matches</a>
+                  <span className='showMore' onClick={() => setVisibleNews(visibleNews + 9)}>Show more matches</span>
                 }
               </div>
               : <p>no news</p>

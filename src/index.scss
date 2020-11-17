@@ -41,6 +41,10 @@ body{
     justify-content: center;
     cursor: pointer;
     font-size: 13px;
+    transition: .3s;
+    &:hover{
+      text-decoration: underline;
+    }
   }
 }
 
