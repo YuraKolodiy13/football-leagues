@@ -4,7 +4,7 @@ const path = require('path');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const cors = require('cors');
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8090;
 const app = express();
 const REDIRECTION_URL = 'https://data-ui.football-data.org';
 

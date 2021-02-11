@@ -133,6 +133,7 @@ const Team = (props) => {
               </Table>
             </TableContainer>
             <Bar data={data} options={options}/>
+            <span className='test'/>
           </TabPanel>
           <TabPanel value={value} index={2}>
             <Matches matches={teamNextEvents} visibleMatches={visibleMatches}/>

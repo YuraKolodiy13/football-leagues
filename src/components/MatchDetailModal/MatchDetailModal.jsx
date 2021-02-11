@@ -119,15 +119,15 @@ const MatchDetailModal = ({open, close, currentMatch}) => {
             <div className='modal__content matchDetail'>
               <div className="matchDetail__top-info">
                 <div className="matchDetail-general">
-                  {currentMatch.competition.area && (
-                    <>
-                      <span className='icon'
-                        style={{backgroundImage: `url(${currentMatch.competition.area.ensignUrl ? currentMatch.competition.area.ensignUrl : unknownFlag})`}}
-                      />
-                      <b className='mr-5'>{currentMatch.competition.area.name}: </b>
-                    </>
-                  )}
-                  <Link to={`/league/${currentMatch.competition.id}`}>{currentMatch.competition.name}</Link>
+                  {/*{currentMatch.competition.area && (*/}
+                  {/*  <>*/}
+                  {/*    <span className='icon'*/}
+                  {/*      style={{backgroundImage: `url(${currentMatch.competition.area.ensignUrl ? currentMatch.competition.area.ensignUrl : unknownFlag})`}}*/}
+                  {/*    />*/}
+                  {/*    <b className='mr-5'>{currentMatch.competition.area.name}: </b>*/}
+                  {/*  </>*/}
+                  {/*)}*/}
+                  {/*<Link to={`/league/${currentMatch.competition.id}`}>{currentMatch.competition.name}</Link>*/}
                   <span className='ml-a'>{new Date(currentMatch.utcDate + '').toLocaleDateString('en-US', {
                     day: 'numeric',
                     month: 'long',

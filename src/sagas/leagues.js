@@ -35,9 +35,9 @@ export function* getTeam(action) {
   try {
     const response = yield call(getTeamApi, action.data);
     yield put({type: leaguesActions.GET_TEAM_REQUEST_SUCCESS, data: response.data});
-    yield put({type: leaguesActions.GET_TEAM_INFO_REQUEST, data: response.data.data.shortName});
-    yield put({type: leaguesActions.GET_TEAM_NEXT_SCHEDULE_REQUEST, data: response.data.data.id});
-    yield put({type: leaguesActions.GET_TEAM_PREV_SCHEDULE_REQUEST, data: response.data.data.id});
+    yield put({type: leaguesActions.GET_TEAM_INFO_REQUEST, data: response.data.shortName});
+    yield put({type: leaguesActions.GET_TEAM_NEXT_SCHEDULE_REQUEST, data: response.data.id});
+    yield put({type: leaguesActions.GET_TEAM_PREV_SCHEDULE_REQUEST, data: response.data.id});
     // yield put({type: leaguesActions.GET_TEAM_PREV_SCHEDULE_REQUEST, data: response.data.teams[0].idTeam});
   } catch (e) {
     yield put({ type: leaguesActions.GET_TEAM_REQUEST_FAILED, error: e.response });
@@ -87,9 +87,9 @@ export function* getPlayerInfo(action) {
 export function* getTable(action) {
   try {
     const response = yield call(getTableApi, action.data);
-    yield put({type: leaguesActions.GET_TABLE_REQUEST_SUCCESS, data: response.data});
+    yield put({type: leaguesActions.GET_TABLE_REQUEST_SUCCESS, data: response.data.standings[0].table});
     yield put({type: leaguesActions.GET_SCHEDULE_REQUEST, data: {
-        matchday: response.data.data[0].playedGames + 1,
+        matchday: response.data.season.currentMatchday,
         id: action.data
       }});
   } catch (e) {
@@ -128,7 +128,7 @@ export function* getCountries() {
   try {
     const response = yield call(getCountriesApi);
     const countries = {};
-    response.data.data.map((item) => {
+    response.data.competitions.map((item) => {
       if(!leagues_ids.includes(item.id)) return null;
       if(countries[item.area.id]){
         countries[item.area.id] = [...countries[item.area.id], item];
@@ -148,10 +148,11 @@ export function* getTodaysMatches(action) {
     const response = yield call(getTodaysMatchesApi, {date: action.data.date, status: action.data.type});
 
     const matches = {};
-    response.data.data.map((item) => {
+    console.log(response.data, 'response.data')
+    response.data.matches.map((item) => {
       const match = {
         ...item,
-        summary: [...item.goals, ...item.substitutions, ...item.bookings].sort((a, b) => a.minute - b.minute)
+        // summary: [...item.goals, ...item.substitutions, ...item.bookings].sort((a, b) => a.minute - b.minute)
       };
       if(matches[item.competition.id]){
         matches[item.competition.id] = [...matches[item.competition.id], match];

@@ -67,7 +67,7 @@ export default function reducer(state = initialState, action) {
     case GET_TEAM_REQUEST_SUCCESS:
       return {
         ...state,
-        team: action.data.data
+        team: action.data
       };
 
     case GET_TEAM_INFO_REQUEST_SUCCESS:
@@ -106,7 +106,7 @@ export default function reducer(state = initialState, action) {
     case GET_TABLE_REQUEST_SUCCESS:
       return {
         ...state,
-        table: action.data.data,
+        table: action.data,
         loading: false
       };
     case GET_TABLE_REQUEST_FAILED:
@@ -130,7 +130,7 @@ export default function reducer(state = initialState, action) {
     case GET_SCHEDULE_REQUEST_SUCCESS:
       return {
         ...state,
-        schedule: action.data.data
+        schedule: action.data.matches
       };
 
     case GET_COUNTRIES_REQUEST_SUCCESS:

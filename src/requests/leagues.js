@@ -18,8 +18,8 @@ export const getTeamsApi = () => {
 };
 
 export const getTeamApi = (team_id) => {
-  return service.get(
-    `${API_URL}fd/teams/${team_id}`,
+  return service.getWithToken(
+    `${API_URL_3}teams/${team_id}`,
   )
 };
 
@@ -48,14 +48,14 @@ export const getPlayerInfoApi = (player) => {
 };
 
 export const getTableApi = (id) => {
-  return service.get(
-    `${API_URL}fd/competitions/${id}/table`,
+  return service.getWithToken(
+    `${API_URL_3}competitions/${id}/standings?standingType=TOTAL`,
   )
 };
 
 export const getScheduleApi = ({matchday, id}) => {
-  return service.get(
-    `${API_URL}fd/competitions/${id}/matches?stage=REGULAR_SEASON&matchday=${matchday}`,
+  return service.getWithToken(
+    `${API_URL_3}competitions/${id}/matches?stage=REGULAR_SEASON&matchday=${matchday}`,
   )
 };
 
@@ -72,14 +72,14 @@ export const getTeamPrevScheduleApi = (team_id) => {
 };
 
 export const getCountriesApi = () => {
-  return service.get(
-    `${API_URL}fd/competitions?areas=2077`,
+  return service.getWithToken(
+    `${API_URL_3}competitions`,
   )
 };
 
 export const getTodaysMatchesApi = ({date, status}) => {
-  return service.get(
-    `${API_URL}fd/matches?dateFrom=${date}&dateTo=${date}&status=${status}`,
+  return service.getWithToken(
+    `${API_URL_3}matches?dateFrom=${date}&dateTo=${date}&status=${status}`,
   )
 };
 

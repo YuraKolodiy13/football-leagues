@@ -73,9 +73,9 @@ const League = (props) => {
     <div className='home'>
       <ul className='breadcrumbs'>
         <li><Link to='/'>Home</Link></li>
-        {!!schedule.length && (
-          <li>{schedule[0].competition.name}</li>
-        )}
+        {/*{!!schedule.length && (*/}
+        {/*  <li>{schedule[0].competition.name}</li>*/}
+        {/*)}*/}
       </ul>
 
       {loading

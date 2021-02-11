@@ -153,3 +153,23 @@ a{
     }
   }
 }
+
+.test{
+  width: 25px;
+  height: 25px;
+  background: #000;
+  border: 2px solid #000;
+  display: inline-block;
+  position: relative;
+  &::before{
+    content: '';
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid #fff;
+    background: #000;
+  }
+}
