@@ -1,3 +1,4 @@
+const compression = require('compression');
 const express = require('express');
 const favicon = require('express-favicon');
 const path = require('path');
@@ -9,9 +10,10 @@ const app = express();
 const REDIRECTION_URL = 'https://data-ui.football-data.org';
 
 console.log(port)
+console.log(compression, 'compression')
 
 app.use(cors());
-
+app.use(compression());
 app.use('/proxy', createProxyMiddleware({
   target: REDIRECTION_URL,
   "secure": false,
